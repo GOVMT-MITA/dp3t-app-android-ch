@@ -44,14 +44,12 @@
 		android:layout_marginBottom="@dimen/spacing_small"
 		android:text="@string/bluetooth_permission_error_text" />
 
-	<TextView
+	<Button
 		android:id="@+id/error_status_button"
-		style="@style/NextStep.Text.Bold"
+		style="@style/NextStep.Button.Red"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:gravity="center"
-		android:padding="@dimen/spacing_small"
-		android:background="?selectableItemBackground"
+		android:layout_gravity="center_horizontal"
 		android:text="@string/bluetooth_turn_on_button_title"
 		android:visibility="visible"/>
 
@@ -60,9 +58,8 @@
 		style="@style/NextStep.Text"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:textColor="@color/grey_dark"
 		android:textSize="@dimen/text_size_small"
 		android:layout_marginTop="@dimen/spacing_small"
-		tools:text="RTSETE"/>
+		tools:text="No errors were found"/>
 
 </LinearLayout>

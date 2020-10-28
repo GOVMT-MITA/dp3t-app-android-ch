@@ -9,63 +9,17 @@
   -->
 
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	xmlns:tools="http://schemas.android.com/tools"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:background="@color/bag_blue">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-	<LinearLayout
-		android:id="@+id/linearLayout"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="@dimen/spacing_larger"
-		android:orientation="horizontal"
-		android:weightSum="2"
-		app:layout_constraintTop_toTopOf="parent">
-
-		<ImageView
-			android:layout_width="0dp"
-			android:layout_height="wrap_content"
-			android:layout_weight="1"
-			android:adjustViewBounds="true"
-			android:src="@drawable/onb_badge_3x" />
-	</LinearLayout>
-
-	<ImageView
-		android:id="@+id/bottomImage"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:adjustViewBounds="true"
-		android:background="@color/white"
-		android:paddingStart="@dimen/spacing_very_large"
-		android:paddingTop="@dimen/spacing_large"
-		android:paddingEnd="@dimen/spacing_very_large"
-		android:paddingBottom="@dimen/spacing_large"
-		android:src="@drawable/onb_logo_bag_3x"
-		app:layout_constraintBottom_toBottomOf="parent" />
-
-	<LinearLayout
-		android:layout_width="match_parent"
-		android:layout_height="0dp"
-		android:orientation="vertical"
-		android:gravity="center"
-		app:layout_constraintBottom_toTopOf="@id/bottomImage"
-		app:layout_constraintTop_toBottomOf="@id/linearLayout">
-
-		<TextView
-			style="@style/NextStep.Text.SplashTitle"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:gravity="center"
-			android:text="@string/oboarding_splashscreen_title" />
-
-		<ImageView
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:scaleType="centerInside"
-			android:src="@drawable/onb_pikto" />
-
-	</LinearLayout>
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:background="@color/white"
+        android:src="@drawable/splash_screen"
+		android:contentDescription="@string/app_name" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2020 Ubique Innovation AG <https://www.ubique.ch>
+  ~
+  ~ This Source Code Form is subject to the terms of the Mozilla Public
+  ~ License, v. 2.0. If a copy of the MPL was not distributed with this
+  ~ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+  ~
+  ~ SPDX-License-Identifier: MPL-2.0
+  -->
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/onboarding_illustration"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/illustration_height"
+            android:layout_marginBottom="@dimen/spacing_medium_large"
+            android:scaleType="fitCenter"
+            android:src="@drawable/img_report" />
+
+        <TextView
+            style="@style/NextStep.Text.Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_medium_large"
+            android:gravity="center_horizontal"
+            android:text="@string/onboarding_language_title_en" />
+
+        <TextView
+            style="@style/NextStep.Text.Title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/spacing_medium_large"
+            android:gravity="center_horizontal"
+            android:text="@string/onboarding_language_title_mt" />
+
+        <Button
+            android:id="@+id/onboarding_language_en_button"
+            style="@style/NextStep.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_large"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:layout_marginEnd="@dimen/spacing_large"
+            android:text="@string/onboarding_language_button_text_en" />
+
+        <Button
+            android:id="@+id/onboarding_language_mt_button"
+            style="@style/NextStep.Button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_large"
+            android:layout_marginTop="@dimen/spacing_medium"
+            android:layout_marginEnd="@dimen/spacing_large"
+            android:text="@string/onboarding_language_button_text_mt" />
+
+    </LinearLayout>
+</ScrollView>

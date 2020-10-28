@@ -25,22 +25,25 @@
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:gravity="center_vertical"
-			android:layout_marginTop="5dp"
 			android:orientation="horizontal">
 
 			<TextView
-				style="@style/NextStep.Text.Title"
+				style="@style/NextStep.Text.Title.Small"
 				android:layout_width="0dp"
 				android:layout_height="wrap_content"
-				android:layout_marginStart="@dimen/spacing_medium"
 				android:layout_weight="1"
+				android:paddingTop="5dp"
+				android:paddingBottom="5dp"
+				android:paddingStart="@dimen/spacing_medium"
+				android:paddingEnd="0dp"
 				android:text="@string/handshakes_title_homescreen" />
 
 			<ImageView
 				android:id="@+id/contacs_chevron"
 				android:layout_width="@dimen/chevron_size_title"
 				android:layout_height="@dimen/chevron_size_title"
-				android:layout_marginEnd="@dimen/spacing_small"
+				android:paddingStart="0dp"
+				android:paddingEnd="@dimen/spacing_medium"
 				android:src="@drawable/ic_chevron_right"
 				android:tint="@color/dark_main" />
 

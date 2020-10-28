@@ -35,7 +35,7 @@
 			android:orientation="vertical">
 
 			<TextView
-				style="@style/NextStep.Text"
+				style="@style/NextStep.Text.Bold.Purple"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:gravity="center_horizontal"
@@ -45,14 +45,15 @@
 				style="@style/NextStep.Text.Title"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:gravity="center"
+				android:layout_marginBottom="@dimen/spacing_medium_large"
+				android:gravity="center_horizontal"
 				android:text="@string/inform_detail_title" />
 
 			<ImageView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
 				android:layout_marginTop="@dimen/spacing_large"
-				android:src="@drawable/ill_positiv" />
+				android:src="@drawable/img_positive" />
 
 			<androidx.cardview.widget.CardView
 				style="@style/NextStep.Card"
@@ -61,20 +62,20 @@
 				android:layout_marginStart="@dimen/spacing_medium_large"
 				android:layout_marginTop="-20dp"
 				android:layout_marginEnd="@dimen/spacing_medium_large"
-				android:layout_marginBottom="@dimen/spacing_large"
 				android:elevation="@dimen/card_elevation">
 
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginStart="@dimen/spacing_larger"
-					android:layout_marginTop="@dimen/spacing_medium_large"
-					android:layout_marginEnd="@dimen/spacing_larger"
-					android:layout_marginBottom="@dimen/spacing_very_large"
-					android:orientation="vertical">
+					android:foreground="?selectableItemBackground"
+					android:orientation="vertical"
+					android:paddingLeft="@dimen/spacing_larger"
+					android:paddingRight="@dimen/spacing_larger"
+					android:paddingTop="@dimen/spacing_medium_large"
+					android:paddingBottom="@dimen/spacing_medium_large">
 
 					<TextView
-						style="@style/NextStep.Text.Bold.Purple"
+						style="@style/NextStep.Text.SubTitle.Purple"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:text="@string/inform_detail_box_subtitle" />
@@ -83,24 +84,25 @@
 						style="@style/NextStep.Text.Title"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
+						android:layout_marginTop="@dimen/spacing_tiny_small"
+						android:layout_marginBottom="@dimen/spacing_tiny_small"
 						android:text="@string/inform_detail_box_title" />
 
 					<TextView
 						style="@style/NextStep.Text"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:layout_marginTop="@dimen/spacing_medium_large"
 						android:text="@string/inform_detail_box_text" />
 
 					<Button
 						android:id="@+id/wtd_inform_button"
 						style="@style/NextStep.Button.Purple"
+						android:textAllCaps="true"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:layout_gravity="center_horizontal"
-						android:layout_marginTop="@dimen/spacing_very_large"
-						android:text="@string/inform_detail_box_button"
-						android:textAllCaps="true" />
+						android:layout_marginTop="@dimen/spacing_medium"
+						android:text="@string/inform_detail_box_button" />
 
 				</LinearLayout>
 
@@ -109,28 +111,31 @@
 			<LinearLayout
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:layout_marginStart="@dimen/spacing_large"
-				android:layout_marginTop="@dimen/spacing_huger"
-				android:layout_marginEnd="@dimen/spacing_large"
-				android:layout_marginBottom="@dimen/spacing_very_large"
-				android:orientation="vertical">
+				android:background="@color/grey_light"
+				android:gravity="center_horizontal"
+				android:orientation="vertical"
+				android:paddingStart="@dimen/spacing_large"
+				android:paddingEnd="@dimen/spacing_large"
+				android:paddingTop="@dimen/spacing_medium_large"
+				android:paddingBottom="@dimen/spacing_medium_large">
 
 				<TextView
 					style="@style/NextStep.Text.Bold"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginBottom="@dimen/spacing_small"
+					android:layout_marginTop="@dimen/spacing_medium"
 					android:text="@string/inform_detail_faq1_title" />
 
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:orientation="horizontal">
+					android:orientation="horizontal"
+					android:layout_marginTop="@dimen/spacing_small">
 
 					<ImageView
 						android:layout_width="@dimen/icon_size"
 						android:layout_height="@dimen/icon_size"
-						android:layout_marginRight="@dimen/spacing_medium_large"
+						android:layout_marginEnd="@dimen/spacing_medium"
 						android:src="@drawable/ic_verified_user"
 						android:tint="@color/purple_main" />
 
@@ -138,6 +143,8 @@
 						style="@style/NextStep.Text"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
+						android:breakStrategy="high_quality"
+						android:hyphenationFrequency="full"
 						android:text="@string/inform_detail_faq1_text" />
 
 				</LinearLayout>
@@ -146,49 +153,20 @@
 					style="@style/NextStep.Text.Bold"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginTop="@dimen/spacing_very_large"
-					android:layout_marginBottom="@dimen/spacing_small"
+					android:layout_marginTop="@dimen/spacing_medium"
 					android:text="@string/inform_detail_faq2_title" />
 
 				<LinearLayout
+
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:orientation="horizontal"
-					android:paddingBottom="@dimen/spacing_medium">
+					android:layout_marginTop="@dimen/spacing_small">
 
 					<ImageView
 						android:layout_width="@dimen/icon_size"
 						android:layout_height="@dimen/icon_size"
-						android:layout_marginRight="@dimen/spacing_medium_large"
-						android:src="@drawable/ic_key"
-						android:tint="@color/purple_main" />
-
-					<TextView
-						style="@style/NextStep.Text"
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:text="@string/inform_detail_faq2_text" />
-
-				</LinearLayout>
-
-				<TextView
-					style="@style/NextStep.Text.Bold"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_marginTop="@dimen/spacing_very_large"
-					android:layout_marginBottom="@dimen/spacing_small"
-					android:text="@string/inform_detail_faq3_title" />
-
-				<LinearLayout
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:orientation="horizontal"
-					android:paddingBottom="@dimen/spacing_medium">
-
-					<ImageView
-						android:layout_width="@dimen/icon_size"
-						android:layout_height="@dimen/icon_size"
-						android:layout_marginRight="@dimen/spacing_medium_large"
+						android:layout_marginEnd="@dimen/spacing_medium"
 						android:src="@drawable/ic_person"
 						android:tint="@color/purple_main" />
 
@@ -196,23 +174,35 @@
 						style="@style/NextStep.Text"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:text="@string/inform_detail_faq3_text" />
+						android:breakStrategy="high_quality"
+						android:hyphenationFrequency="full"
+						android:text="@string/inform_detail_faq2_text" />
 
 				</LinearLayout>
 
-				<Button
+				<LinearLayout
 					android:id="@+id/wtd_inform_faq_button"
-					style="@style/NextStep.Button.Outlined.Purple"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_gravity="center_horizontal"
-					android:layout_marginStart="@dimen/spacing_medium"
-					android:layout_marginTop="@dimen/spacing_huger"
-					android:layout_marginEnd="@dimen/spacing_medium"
-					android:layout_marginBottom="@dimen/spacing_huger"
-					android:drawableRight="@drawable/ic_launch_purple"
-					android:paddingStart="@dimen/padding_start_icon_button"
-					android:text="@string/faq_button_title" />
+					android:layout_marginBottom="@dimen/spacing_small"
+					android:paddingTop="@dimen/spacing_small"
+					android:paddingBottom="@dimen/spacing_small"
+					android:orientation="horizontal">
+
+					<ImageView
+						android:layout_width="@dimen/icon_size"
+						android:layout_height="@dimen/icon_size"
+						android:layout_marginEnd="@dimen/spacing_small"
+						android:src="@drawable/ic_launch"
+						android:tint="@color/purple_main" />
+
+					<TextView
+						style="@style/NextStep.Text.Bold.Purple"
+						android:layout_width="match_parent"
+						android:layout_height="wrap_content"
+						android:text="@string/faq_button_title" />
+
+				</LinearLayout>
 
 			</LinearLayout>
 

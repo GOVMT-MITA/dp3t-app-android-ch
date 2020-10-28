@@ -10,6 +10,7 @@
 package ch.admin.bag.dp3t.networking;
 
 import android.content.Context;
+
 import androidx.annotation.NonNull;
 
 import java.io.IOException;
@@ -35,67 +36,67 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class AuthCodeRepository {
 
-	private static final String TAG = "AuthCodeRepo";
+    private static final String TAG = "AuthCodeRepo";
 
-	private AuthCodeService authCodeService;
+    private AuthCodeService authCodeService;
 
-	public AuthCodeRepository(@NonNull Context context) {
+    public AuthCodeRepository(@NonNull Context context) {
 
-		OkHttpClient.Builder okHttpBuilder = new OkHttpClient.Builder();
-		okHttpBuilder.addInterceptor(chain -> {
-			Request request = chain.request()
-					.newBuilder()
-					.build();
-			return chain.proceed(request);
-		});
+        OkHttpClient.Builder okHttpBuilder = new OkHttpClient.Builder();
+        okHttpBuilder.addInterceptor(chain -> {
+            Request request = chain.request()
+                    .newBuilder()
+                    .build();
+            return chain.proceed(request);
+        });
 
-		int cacheSize = 5 * 1024 * 1024; // 5 MB
-		Cache cache = new Cache(context.getCacheDir(), cacheSize);
-		okHttpBuilder.cache(cache);
+        int cacheSize = 5 * 1024 * 1024; // 5 MB
+        Cache cache = new Cache(context.getCacheDir(), cacheSize);
+        okHttpBuilder.cache(cache);
 
-		okHttpBuilder.certificatePinner(CertificatePinning.getCertificatePinner());
-		okHttpBuilder.addInterceptor(new UserAgentInterceptor(DP3T.getUserAgent()));
+        okHttpBuilder.certificatePinner(CertificatePinning.getCertificatePinner());
+        okHttpBuilder.addInterceptor(new UserAgentInterceptor(DP3T.getUserAgent()));
 
-		Retrofit retrofit = new Retrofit.Builder()
-				.baseUrl(BuildConfig.AUTH_CODE_URL)
-				.client(okHttpBuilder.build())
-				.addConverterFactory(GsonConverterFactory.create())
-				.build();
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(BuildConfig.AUTH_CODE_URL)
+                .client(okHttpBuilder.build())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
 
-		authCodeService = retrofit.create(AuthCodeService.class);
-	}
+        authCodeService = retrofit.create(AuthCodeService.class);
+    }
 
-	public void getAccessToken(@NonNull AuthenticationCodeRequestModel authenticationCode,
-			@NonNull ResponseCallback<AuthenticationCodeResponseModel> callbackListener) {
-		authCodeService.getAccessToken(authenticationCode).enqueue(new Callback<AuthenticationCodeResponseModel>() {
-			@Override
-			public void onResponse(Call<AuthenticationCodeResponseModel> call,
-					Response<AuthenticationCodeResponseModel> response) {
-				Logger.d(TAG, "getAccessToken response code=" + response.code());
-				if (response.isSuccessful()) {
-					callbackListener.onSuccess(response.body());
-				} else {
-					if (response.code() == 404) {
-						onFailure(call, new InvalidCodeError());
-					} else {
-						onFailure(call, new ResponseError(response.raw()));
-					}
-				}
-			}
+    public void getAccessToken(@NonNull AuthenticationCodeRequestModel authenticationCode,
+                               @NonNull ResponseCallback<AuthenticationCodeResponseModel> callbackListener) {
+        authCodeService.getAccessToken(authenticationCode).enqueue(new Callback<AuthenticationCodeResponseModel>() {
+            @Override
+            public void onResponse(Call<AuthenticationCodeResponseModel> call,
+                                   Response<AuthenticationCodeResponseModel> response) {
+                Logger.d(TAG, "getAccessToken response code=" + response.code());
+                if (response.isSuccessful()) {
+                    callbackListener.onSuccess(response.body());
+                } else {
+                    if (response.code() == 404) {
+                        onFailure(call, new InvalidCodeError());
+                    } else {
+                        onFailure(call, new ResponseError(response.raw()));
+                    }
+                }
+            }
 
-			@Override
-			public void onFailure(Call<AuthenticationCodeResponseModel> call, Throwable t) {
-				Logger.e(TAG, "getAccessToken", t);
-				callbackListener.onError(t);
-			}
-		});
-	}
+            @Override
+            public void onFailure(Call<AuthenticationCodeResponseModel> call, Throwable t) {
+                Logger.e(TAG, "getAccessToken", t);
+                callbackListener.onError(t);
+            }
+        });
+    }
 
-	public AuthenticationCodeResponseModel getAccessTokenSync(@NonNull AuthenticationCodeRequestModel authenticationCode)
-			throws IOException, ResponseError {
-		Response<AuthenticationCodeResponseModel> response = authCodeService.getAccessToken(authenticationCode).execute();
-		if (!response.isSuccessful()) throw new ResponseError(response.raw());
-		return response.body();
-	}
+    public AuthenticationCodeResponseModel getAccessTokenSync(@NonNull AuthenticationCodeRequestModel authenticationCode)
+            throws IOException, ResponseError {
+        Response<AuthenticationCodeResponseModel> response = authCodeService.getAccessToken(authenticationCode).execute();
+        if (!response.isSuccessful()) throw new ResponseError(response.raw());
+        return response.body();
+    }
 
 }

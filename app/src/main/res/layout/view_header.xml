@@ -55,6 +55,6 @@
 		android:scaleType="fitCenter"
 		android:layout_marginTop="@dimen/spacing_small"
 		android:layout_marginBottom="@dimen/spacing_larger"
-		tools:src="@drawable/ic_begegnungen" />
+		tools:src="@drawable/ic_encounters" />
 
 </merge>

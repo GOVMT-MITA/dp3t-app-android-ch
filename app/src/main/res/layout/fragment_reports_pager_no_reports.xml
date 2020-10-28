@@ -11,39 +11,40 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:background="@color/status_green_bg">
+	android:background="@color/grey_light">
 
 	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center"
-		android:layout_marginTop="-16dp"
-		android:orientation="vertical"
-		android:padding="@dimen/spacing_medium">
+		android:orientation="vertical">
 
 		<ImageView
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
+			android:layout_width="@dimen/icon_size_large"
+			android:layout_height="@dimen/icon_size_large"
 			android:layout_gravity="center_horizontal"
-			android:src="@drawable/ic_check_circle_large" />
+			android:src="@drawable/ic_check_circle_inverted" />
 
 		<TextView
 			style="@style/NextStep.Text.Title"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_horizontal"
-			android:layout_marginTop="@dimen/spacing_small"
-			android:text="@string/meldungen_no_meldungen_title"
+			android:textAlignment="center"
+			android:layout_marginTop="@dimen/spacing_tiny_small"
+			android:text="@string/messages_no_messages_title"
 			android:textColor="@color/green_main" />
 
 		<TextView
-			style="@style/NextStep.Text"
+			style="@style/NextStep.Text.Bold"
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
 			android:layout_gravity="center_horizontal"
 			android:layout_marginTop="@dimen/spacing_tiny_small"
+			android:paddingStart="@dimen/spacing_medium"
+			android:paddingEnd="@dimen/spacing_medium"
 			android:gravity="center"
-			android:text="@string/meldungen_no_meldungen_subtitle" />
+			android:text="@string/messages_no_messages_subtitle" />
 
 	</LinearLayout>
 

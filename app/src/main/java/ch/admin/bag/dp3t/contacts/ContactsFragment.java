@@ -18,6 +18,7 @@ import android.widget.CompoundButton;
 import android.widget.ScrollView;
 import android.widget.Switch;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -39,148 +40,153 @@ import ch.admin.bag.dp3t.viewmodel.TracingViewModel;
 
 public class ContactsFragment extends Fragment {
 
-	private static final String TAG = "ContactsFragment";
+    private static final String TAG = "ContactsFragment";
 
-	private TracingViewModel tracingViewModel;
-	private HeaderView headerView;
-	private ScrollView scrollView;
+    private TracingViewModel tracingViewModel;
+    private HeaderView headerView;
+    private ScrollView scrollView;
 
-	private Switch tracingSwitch;
+    private Switch tracingSwitch;
 
-	public static ContactsFragment newInstance() {
-		return new ContactsFragment();
-	}
+    public static ContactsFragment newInstance() {
+        return new ContactsFragment();
+    }
 
-	public ContactsFragment() { super(R.layout.fragment_contacts); }
+    public ContactsFragment() {
+        super(R.layout.fragment_contacts);
+    }
 
-	@Override
-	public void onCreate(@Nullable Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-		tracingViewModel = new ViewModelProvider(requireActivity()).get(TracingViewModel.class);
-		getChildFragmentManager()
-				.beginTransaction()
-				.add(R.id.status_container, TracingBoxFragment.newInstance(false))
-				.commit();
-	}
+        tracingViewModel = new ViewModelProvider(requireActivity()).get(TracingViewModel.class);
+        getChildFragmentManager()
+                .beginTransaction()
+                .add(R.id.status_container, TracingBoxFragment.newInstance(false))
+                .commit();
+    }
 
-	@Override
-	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-		Toolbar toolbar = view.findViewById(R.id.contacts_toolbar);
-		toolbar.setNavigationOnClickListener(v -> getParentFragmentManager().popBackStack());
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        Toolbar toolbar = view.findViewById(R.id.contacts_toolbar);
+        toolbar.setNavigationOnClickListener(v -> getParentFragmentManager().popBackStack());
 
-		View tracingStatusView = view.findViewById(R.id.tracing_status);
-		View tracingErrorView = view.findViewById(R.id.tracing_error);
-		tracingSwitch = view.findViewById(R.id.contacts_tracing_switch);
+        View tracingStatusView = view.findViewById(R.id.tracing_status);
+        View tracingErrorView = view.findViewById(R.id.tracing_error);
+        tracingSwitch = view.findViewById(R.id.contacts_tracing_switch);
 
-		headerView = view.findViewById(R.id.contacts_header_view);
-		scrollView = view.findViewById(R.id.contacts_scroll_view);
-		tracingViewModel.getAppStatusLiveData().observe(getViewLifecycleOwner(), tracingStatus -> {
-			headerView.setState(tracingStatus);
-		});
-		setupScrollBehavior();
-		setupTracingView();
-		setupHistoryCard(view);
+        headerView = view.findViewById(R.id.contacts_header_view);
+        scrollView = view.findViewById(R.id.contacts_scroll_view);
+        tracingViewModel.getAppStatusLiveData().observe(getViewLifecycleOwner(), tracingStatus -> {
+            headerView.setState(tracingStatus);
+        });
+        setupScrollBehavior();
+        setupTracingView();
+        setupHistoryCard(view);
 
-		view.findViewById(R.id.contacts_faq_button).setOnClickListener(v -> {
-			Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.faq_button_url)));
-			startActivity(browserIntent);
-		});
-	}
+        view.findViewById(R.id.contacts_faq_button).setOnClickListener(v -> {
+            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.faq_button_url)));
+            startActivity(browserIntent);
+        });
+    }
 
-	private void setupTracingView() {
-		Activity activity = requireActivity();
+    private void setupTracingView() {
+        Activity activity = requireActivity();
 
-		tracingSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-			@Override
-			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-				if (isChecked) {
-					tracingViewModel.enableTracing(activity,
-							() -> { },
-							(e) -> {
-								String message = ENExceptionHelper.getErrorMessage(e, activity);
-								Logger.e(TAG, message);
-								new AlertDialog.Builder(activity, R.style.NextStep_AlertDialogStyle)
-										.setTitle(R.string.android_en_start_failure)
-										.setMessage(message)
-										.setPositiveButton(R.string.android_button_ok, (dialog, which) -> {})
-										.show();
-								tracingSwitch.setChecked(false);
-							},
-							() -> tracingSwitch.setChecked(false));
-				} else {
-					tracingViewModel.disableTracing();
-				}
-			}
-		});
+        tracingSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    tracingViewModel.enableTracing(activity,
+                            () -> {
+                                // success, do nothing
+                            },
+                            (e) -> {
+                                String message = ENExceptionHelper.getErrorMessage(e, activity);
+                                Logger.e(TAG, message);
+                                new AlertDialog.Builder(activity, R.style.NextStep_AlertDialogStyle)
+                                        .setTitle(R.string.android_en_start_failure)
+                                        .setMessage(message)
+                                        .setPositiveButton(R.string.android_button_ok, (dialog, which) -> {
+                                        })
+                                        .show();
+                                tracingSwitch.setChecked(false);
+                            },
+                            () -> tracingSwitch.setChecked(false));
+                } else {
+                    tracingViewModel.disableTracing();
+                }
+            }
+        });
 
-		tracingViewModel.getTracingStatusLiveData().observe(getViewLifecycleOwner(), status -> {
-			tracingSwitch.setChecked(status.isTracingEnabled());
-		});
-	}
+        tracingViewModel.getTracingStatusLiveData().observe(getViewLifecycleOwner(), status -> {
+            tracingSwitch.setChecked(status.isTracingEnabled());
+        });
+    }
 
-	private void setupHistoryCard(View view) {
-		View historyCard = view.findViewById(R.id.contacts_card_history);
-		if (BuildConfig.IS_FLAVOR_PROD || BuildConfig.IS_FLAVOR_ABNAHME) {
-			historyCard.findViewById(R.id.card_history_chevron).setVisibility(View.GONE);
-		}else {
-			historyCard.setOnClickListener(v -> {
-				getParentFragmentManager().beginTransaction()
-						.setCustomAnimations(R.anim.slide_enter, R.anim.slide_exit, R.anim.slide_pop_enter, R.anim.slide_pop_exit)
-						.replace(R.id.main_fragment_container, HistoryFragment.newInstance())
-						.addToBackStack(HistoryFragment.class.getCanonicalName())
-						.commit();
-			});
-		}
-		View historyCardLoadingView = view.findViewById(R.id.card_history_loading_view);
-		historyCardLoadingView.setVisibility(View.VISIBLE);
-		TextView lastSyncDate = view.findViewById(R.id.card_history_last_synchronization_date);
+    private void setupHistoryCard(View view) {
+        View historyCard = view.findViewById(R.id.contacts_card_history);
+        if (BuildConfig.IS_FLAVOR_PROD || BuildConfig.IS_FLAVOR_ABNAHME) {
+            historyCard.findViewById(R.id.card_history_chevron).setVisibility(View.GONE);
+        } else {
+            historyCard.setOnClickListener(v -> {
+                getParentFragmentManager().beginTransaction()
+                        .setCustomAnimations(R.anim.slide_enter, R.anim.slide_exit, R.anim.slide_pop_enter, R.anim.slide_pop_exit)
+                        .replace(R.id.main_fragment_container, HistoryFragment.newInstance())
+                        .addToBackStack(HistoryFragment.class.getCanonicalName())
+                        .commit();
+            });
+        }
+        View historyCardLoadingView = view.findViewById(R.id.card_history_loading_view);
+        historyCardLoadingView.setVisibility(View.VISIBLE);
+        TextView lastSyncDate = view.findViewById(R.id.card_history_last_synchronization_date);
 
-		tracingViewModel.getHistoryLiveDate().observe(getViewLifecycleOwner(), historyEntries -> {
-			if (historyEntries != null) {
-				Long timeSync = null;
-				for (HistoryEntry entry : historyEntries) {
-					if (entry.getType() == HistoryEntryType.SYNC && entry.isSuccessful()) {
-						timeSync = entry.getTime();
-						lastSyncDate.setText(DateUtils.getFormattedDateTime(timeSync));
-						break;
-					}
-				}
-				if (timeSync == null) lastSyncDate.setText("-");
-				historyCardLoadingView.animate()
-						.alpha(0f)
-						.setDuration(getResources().getInteger(android.R.integer.config_shortAnimTime))
-						.withEndAction(() -> historyCardLoadingView.setVisibility(View.GONE))
-						.start();
-			}
-		});
-		tracingViewModel.loadHistoryEntries();
-	}
+        tracingViewModel.getHistoryLiveDate().observe(getViewLifecycleOwner(), historyEntries -> {
+            if (historyEntries != null) {
+                Long timeSync = null;
+                for (HistoryEntry entry : historyEntries) {
+                    if (entry.getType() == HistoryEntryType.SYNC && entry.isSuccessful()) {
+                        timeSync = entry.getTime();
+                        lastSyncDate.setText(DateUtils.getFormattedDateTime(timeSync));
+                        break;
+                    }
+                }
+                if (timeSync == null) lastSyncDate.setText("Unknown");
+                historyCardLoadingView.animate()
+                        .alpha(0f)
+                        .setDuration(getResources().getInteger(android.R.integer.config_shortAnimTime))
+                        .withEndAction(() -> historyCardLoadingView.setVisibility(View.GONE))
+                        .start();
+            }
+        });
+        tracingViewModel.loadHistoryEntries();
+    }
 
-	@Override
-	public void onDestroyView() {
-		super.onDestroyView();
-		headerView.stopAnimation();
-	}
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        headerView.stopAnimation();
+    }
 
-	private void setupScrollBehavior() {
+    private void setupScrollBehavior() {
 
-		int scrollRangePx = getResources().getDimensionPixelSize(R.dimen.top_item_padding);
-		int translationRangePx = -getResources().getDimensionPixelSize(R.dimen.spacing_huge);
-		scrollView.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
-			float progress = computeScrollAnimProgress(scrollY, scrollRangePx);
-			headerView.setAlpha(1 - progress);
-			headerView.setTranslationY(progress * translationRangePx);
-		});
-		scrollView.post(() -> {
-			float progress = computeScrollAnimProgress(scrollView.getScrollY(), scrollRangePx);
-			headerView.setAlpha(1 - progress);
-			headerView.setTranslationY(progress * translationRangePx);
-		});
-	}
+        int scrollRangePx = getResources().getDimensionPixelSize(R.dimen.top_item_padding);
+        int translationRangePx = -getResources().getDimensionPixelSize(R.dimen.spacing_huge);
+        scrollView.setOnScrollChangeListener((v, scrollX, scrollY, oldScrollX, oldScrollY) -> {
+            float progress = computeScrollAnimProgress(scrollY, scrollRangePx);
+            headerView.setAlpha(1 - progress);
+            headerView.setTranslationY(progress * translationRangePx);
+        });
+        scrollView.post(() -> {
+            float progress = computeScrollAnimProgress(scrollView.getScrollY(), scrollRangePx);
+            headerView.setAlpha(1 - progress);
+            headerView.setTranslationY(progress * translationRangePx);
+        });
+    }
 
-	private float computeScrollAnimProgress(int scrollY, int scrollRange) {
-		return Math.min(scrollY, scrollRange) / (float) scrollRange;
-	}
+    private float computeScrollAnimProgress(int scrollY, int scrollRange) {
+        return Math.min(scrollY, scrollRange) / (float) scrollRange;
+    }
 
 }

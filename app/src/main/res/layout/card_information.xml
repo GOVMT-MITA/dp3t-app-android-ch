@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2020 Ubique Innovation AG <https://www.ubique.ch>
+  ~
+  ~ This Source Code Form is subject to the terms of the Mozilla Public
+  ~ License, v. 2.0. If a copy of the MPL was not distributed with this
+  ~ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+  ~
+  ~ SPDX-License-Identifier: MPL-2.0
+  -->
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+	style="@style/NextStep.Card"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content">
+
+	<LinearLayout
+		android:id="@+id/card_information"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:foreground="?selectableItemBackground"
+		android:orientation="vertical">
+
+		<LinearLayout
+			android:id="@+id/information_header"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:gravity="center_vertical"
+			android:orientation="horizontal">
+
+			<TextView
+				style="@style/NextStep.Text.Title.Small"
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:paddingTop="5dp"
+				android:paddingBottom="5dp"
+				android:paddingStart="@dimen/spacing_medium"
+				android:paddingEnd="0dp"
+				android:text="@string/information_title" />
+
+			<ImageView
+				android:id="@+id/information_chevron"
+				android:layout_width="@dimen/chevron_size_title"
+				android:layout_height="@dimen/chevron_size_title"
+				android:paddingStart="0dp"
+				android:paddingEnd="@dimen/spacing_medium"
+				android:src="@drawable/ic_chevron_right"
+				android:tint="@color/dark_main" />
+
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="@dimen/spacing_small"
+			android:layout_marginBottom="@dimen/spacing_small"
+			android:orientation="horizontal">
+
+			<ImageView
+				android:id="@+id/contacs_chevron"
+				android:layout_width="@dimen/icon_size"
+				android:layout_height="@dimen/icon_size"
+				android:layout_marginStart="@dimen/spacing_medium"
+				android:layout_marginEnd="@dimen/spacing_medium"
+				android:src="@drawable/ic_info_black_outlined"
+				android:tint="@color/blue_main" />
+
+			<TextView
+				style="@style/NextStep.Text.Bold"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:text="@string/information_text"/>
+
+		</LinearLayout>
+	</LinearLayout>
+</androidx.cardview.widget.CardView>

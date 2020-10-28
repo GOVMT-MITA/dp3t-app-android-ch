@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -37,141 +38,143 @@ import ch.admin.bag.dp3t.viewmodel.TracingViewModel;
 
 public class TracingBoxFragment extends Fragment {
 
-	private static final String TAG = "TracingBox";
+    private static final String TAG = "TracingBox";
 
-	private static final int REQUEST_CODE_BLE_INTENT = 330;
-	private static final int REQUEST_CODE_LOCATION_INTENT = 510;
-	private static final int REQUEST_CODE_BATTERY_OPTIMIZATIONS_INTENT = 420;
-	private static String ARG_TRACING = "isHomeFragment";
-	private TracingViewModel tracingViewModel;
+    private static final int REQUEST_CODE_BLE_INTENT = 330;
+    private static final int REQUEST_CODE_LOCATION_INTENT = 510;
+    private static final int REQUEST_CODE_BATTERY_OPTIMIZATIONS_INTENT = 420;
+    private static String ARG_TRACING = "isHomeFragment";
+    private TracingViewModel tracingViewModel;
 
-	private View tracingStatusView;
+    private View tracingStatusView;
 
-	private View tracingErrorView;
-	private boolean isHomeFragment;
-	private View tracingLoadingView;
+    private View tracingErrorView;
+    private boolean isHomeFragment;
+    private View tracingLoadingView;
 
-	public TracingBoxFragment() {
-		super(R.layout.fragment_tracing_box);
-	}
+    public TracingBoxFragment() {
+        super(R.layout.fragment_tracing_box);
+    }
 
-	public static TracingBoxFragment newInstance(boolean isTracingFragment) {
-		Bundle args = new Bundle();
-		args.putBoolean(ARG_TRACING, isTracingFragment);
-		TracingBoxFragment fragment = new TracingBoxFragment();
-		fragment.setArguments(args);
-		return fragment;
-	}
-
-
-	@Override
-	public void onCreate(@Nullable Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		tracingViewModel = new ViewModelProvider(requireActivity()).get(TracingViewModel.class);
-		isHomeFragment = getArguments().getBoolean(ARG_TRACING);
-	}
+    public static TracingBoxFragment newInstance(boolean isTracingFragment) {
+        Bundle args = new Bundle();
+        args.putBoolean(ARG_TRACING, isTracingFragment);
+        TracingBoxFragment fragment = new TracingBoxFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
 
-	@Override
-	public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-		tracingStatusView = view.findViewById(R.id.tracing_status);
-		tracingErrorView = view.findViewById(R.id.tracing_error);
-		tracingLoadingView = view.findViewById(R.id.tracing_loading_view);
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        tracingViewModel = new ViewModelProvider(requireActivity()).get(TracingViewModel.class);
+        isHomeFragment = getArguments().getBoolean(ARG_TRACING);
+    }
 
-		showStatus();
-	}
 
-	private void showStatus() {
-		tracingViewModel.getAppStatusLiveData().observe(getViewLifecycleOwner(), tracingStatusInterface -> {
-			boolean isTracing = tracingStatusInterface.getTracingState().equals(TracingState.ACTIVE);
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        tracingStatusView = view.findViewById(R.id.tracing_status);
+        tracingErrorView = view.findViewById(R.id.tracing_error);
+        tracingLoadingView = view.findViewById(R.id.tracing_loading_view);
 
-			TracingStatus.ErrorState errorState = tracingStatusInterface.getTracingErrorState();
-			if (isTracing && errorState != null) {
-				handleErrorState(errorState);
-			} else if (tracingStatusInterface.isReportedAsInfected()) {
-				tracingStatusView.setVisibility(View.VISIBLE);
-				tracingErrorView.setVisibility(View.GONE);
-				TracingStatusHelper.updateStatusView(tracingStatusView, TracingState.ENDED, isHomeFragment);
-			} else if (!isTracing) {
-				tracingStatusView.setVisibility(View.GONE);
-				tracingErrorView.setVisibility(View.VISIBLE);
-				TracingStatusHelper.showTracingDeactivated(tracingErrorView, isHomeFragment);
-				TextView buttonView = tracingErrorView.findViewById(R.id.error_status_button);
-				buttonView.setOnClickListener(v -> {
-					enableTracing();
-				});
-			} else {
-				tracingStatusView.setVisibility(View.VISIBLE);
-				tracingErrorView.setVisibility(View.GONE);
-				TracingStatusHelper.updateStatusView(tracingStatusView, TracingState.ACTIVE, isHomeFragment);
-			}
-		});
-	}
+        showStatus();
+    }
 
-	private void handleErrorState(TracingStatus.ErrorState errorState) {
-		tracingStatusView.setVisibility(View.GONE);
-		tracingErrorView.setVisibility(View.VISIBLE);
-		TracingErrorStateHelper.updateErrorView(tracingErrorView, errorState);
-		tracingErrorView.findViewById(R.id.error_status_button).setOnClickListener(v -> {
-			switch (errorState) {
-				case BLE_DISABLED:
-					BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-					if (!mBluetoothAdapter.isEnabled()) {
-						Intent bleIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-						startActivityForResult(bleIntent, REQUEST_CODE_BLE_INTENT);
-					}
-					break;
-				case BATTERY_OPTIMIZER_ENABLED:
-					Intent batteryIntent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
-					batteryIntent.setData(Uri.parse("package:" + getContext().getPackageName()));
-					startActivityForResult(batteryIntent, REQUEST_CODE_BATTERY_OPTIMIZATIONS_INTENT);
-					break;
-				case LOCATION_SERVICE_DISABLED:
-					Intent locationIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-					startActivityForResult(locationIntent, REQUEST_CODE_LOCATION_INTENT);
-					break;
-				case GAEN_UNEXPECTEDLY_DISABLED:
-					enableTracing();
-					break;
-				case GAEN_NOT_AVAILABLE:
-					DeviceFeatureHelper.openPlayServicesInPlayStore(v.getContext());
-					break;
-			}
-		});
-	}
+    private void showStatus() {
+        tracingViewModel.getAppStatusLiveData().observe(getViewLifecycleOwner(), tracingStatusInterface -> {
+            boolean isTracing = tracingStatusInterface.getTracingState().equals(TracingState.ACTIVE);
 
-	private void enableTracing() {
-		Activity activity = getActivity();
-		if (activity == null) {
-			return;
-		}
+            TracingStatus.ErrorState errorState = tracingStatusInterface.getTracingErrorState();
+            if (isTracing && errorState != null) {
+                handleErrorState(errorState);
+            } else if (tracingStatusInterface.isReportedAsInfected()) {
+                tracingStatusView.setVisibility(View.VISIBLE);
+                tracingErrorView.setVisibility(View.GONE);
+                TracingStatusHelper.updateStatusView(tracingStatusView, TracingState.ENDED, isHomeFragment);
+            } else if (!isTracing) {
+                tracingStatusView.setVisibility(View.GONE);
+                tracingErrorView.setVisibility(View.VISIBLE);
+                TracingStatusHelper.showTracingDeactivated(tracingErrorView, isHomeFragment);
+                TextView buttonView = tracingErrorView.findViewById(R.id.error_status_button);
+                buttonView.setOnClickListener(v -> {
+                    enableTracing();
+                });
+            } else {
+                tracingStatusView.setVisibility(View.VISIBLE);
+                tracingErrorView.setVisibility(View.GONE);
+                TracingStatusHelper.updateStatusView(tracingStatusView, TracingState.ACTIVE, isHomeFragment);
+            }
+        });
+    }
 
-		tracingViewModel.enableTracing(activity,
-				() -> { },
-				(e) -> {
-					String message = ENExceptionHelper.getErrorMessage(e, activity);
-					Logger.e(TAG, message);
-					new AlertDialog.Builder(activity, R.style.NextStep_AlertDialogStyle)
-							.setTitle(R.string.android_en_start_failure)
-							.setMessage(message)
-							.setPositiveButton(R.string.android_button_ok, (dialog, which) -> {})
-							.show();
-				},
-				() -> {
-					// cancelled
-				});
-	}
+    private void handleErrorState(TracingStatus.ErrorState errorState) {
+        tracingStatusView.setVisibility(View.GONE);
+        tracingErrorView.setVisibility(View.VISIBLE);
+        TracingErrorStateHelper.updateErrorView(tracingErrorView, errorState);
+        tracingErrorView.findViewById(R.id.error_status_button).setOnClickListener(v -> {
+            switch (errorState) {
+                case BLE_DISABLED:
+                    BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+                    if (!mBluetoothAdapter.isEnabled()) {
+                        Intent bleIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                        startActivityForResult(bleIntent, REQUEST_CODE_BLE_INTENT);
+                    }
+                    break;
+                case BATTERY_OPTIMIZER_ENABLED:
+                    Intent batteryIntent = new Intent(Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
+                    batteryIntent.setData(Uri.parse("package:" + getContext().getPackageName()));
+                    startActivityForResult(batteryIntent, REQUEST_CODE_BATTERY_OPTIMIZATIONS_INTENT);
+                    break;
+                case LOCATION_SERVICE_DISABLED:
+                    Intent locationIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                    startActivityForResult(locationIntent, REQUEST_CODE_LOCATION_INTENT);
+                    break;
+                case GAEN_UNEXPECTEDLY_DISABLED:
+                    enableTracing();
+                    break;
+                case GAEN_NOT_AVAILABLE:
+                    DeviceFeatureHelper.openPlayServicesInPlayStore(v.getContext());
+                    break;
+            }
+        });
+    }
 
-	@Override
-	public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-		if (requestCode == REQUEST_CODE_BLE_INTENT && resultCode == Activity.RESULT_OK) {
-			tracingViewModel.invalidateTracingStatus();
-		} else if (requestCode == REQUEST_CODE_LOCATION_INTENT && resultCode == Activity.RESULT_OK) {
-			tracingViewModel.invalidateTracingStatus();
-		} else if (requestCode == REQUEST_CODE_BATTERY_OPTIMIZATIONS_INTENT && resultCode == Activity.RESULT_OK) {
-			tracingViewModel.invalidateTracingStatus();
-		}
-		DP3T.onActivityResult(getActivity(), requestCode, resultCode, data);
-	}
+    private void enableTracing() {
+        Activity activity = getActivity();
+        if (activity == null) {
+            return;
+        }
+
+        tracingViewModel.enableTracing(activity,
+                () -> {
+                },
+                (e) -> {
+                    String message = ENExceptionHelper.getErrorMessage(e, activity);
+                    Logger.e(TAG, message);
+                    new AlertDialog.Builder(activity, R.style.NextStep_AlertDialogStyle)
+                            .setTitle(R.string.android_en_start_failure)
+                            .setMessage(message)
+                            .setPositiveButton(R.string.android_button_ok, (dialog, which) -> {
+                            })
+                            .show();
+                },
+                () -> {
+                    // cancelled
+                });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == REQUEST_CODE_BLE_INTENT && resultCode == Activity.RESULT_OK) {
+            tracingViewModel.invalidateTracingStatus();
+        } else if (requestCode == REQUEST_CODE_LOCATION_INTENT && resultCode == Activity.RESULT_OK) {
+            tracingViewModel.invalidateTracingStatus();
+        } else if (requestCode == REQUEST_CODE_BATTERY_OPTIMIZATIONS_INTENT && resultCode == Activity.RESULT_OK) {
+            tracingViewModel.invalidateTracingStatus();
+        }
+        DP3T.onActivityResult(getActivity(), requestCode, resultCode, data);
+    }
 
 }

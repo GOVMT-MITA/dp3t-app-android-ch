@@ -77,8 +77,8 @@ public class ReportsPagerFragment extends Fragment {
 				view = inflater.inflate(R.layout.fragment_reports_pager_possible_infection, container, false);
 				TextView title = view.findViewById(R.id.fragment_reports_pager_title);
 				TextView subTitle = view.findViewById(R.id.fragment_reports_pager_subtitle);
-				title.setText(R.string.meldung_detail_new_contact_title);
-				subTitle.setText(R.string.meldung_detail_new_contact_subtitle);
+				title.setText(R.string.report_detail_new_contact_title);
+				subTitle.setText(R.string.report_detail_new_contact_subtitle);
 				break;
 			case POSITIVE_TESTED:
 				view = inflater.inflate(R.layout.fragment_reports_pager_positive_tested, container, false);

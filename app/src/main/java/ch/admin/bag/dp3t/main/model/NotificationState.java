@@ -24,11 +24,11 @@ public enum NotificationState {
 	@StringRes public static int getTitle(NotificationState notificationState) {
 		switch (notificationState) {
 			case NO_REPORTS:
-				return R.string.meldungen_no_meldungen_title;
+				return R.string.messages_no_messages_title;
 			case EXPOSED:
-				return R.string.meldungen_meldung_title;
+				return R.string.messages_report_title;
 			case POSITIVE_TESTED:
-				return R.string.meldung_homescreen_positiv_title;
+				return R.string.report_homescreen_positiv_title;
 		}
 		return -1;
 	}
@@ -36,11 +36,11 @@ public enum NotificationState {
 	@StringRes public static int getText(NotificationState NotificationState) {
 		switch (NotificationState) {
 			case NO_REPORTS:
-				return R.string.meldungen_no_meldungen_subtitle;
+				return R.string.messages_no_messages_subtitle;
 			case EXPOSED:
-				return R.string.meldungen_meldung_text;
+				return R.string.messages_report_text;
 			case POSITIVE_TESTED:
-				return R.string.meldung_homescreen_positiv_text;
+				return R.string.report_homescreen_positiv_text;
 		}
 		return -1;
 	}
@@ -69,12 +69,12 @@ public enum NotificationState {
 		return -1;
 	}
 
-	@ColorRes public static int geTextColor(NotificationState notificationState) {
+	@ColorRes public static int getTextColor(NotificationState notificationState) {
 		switch (notificationState) {
 			case NO_REPORTS:
 				return R.color.dark_main;
 			case EXPOSED:
-				return R.color.white;
+				return R.color.dark_main;
 			case POSITIVE_TESTED:
 				return R.color.white;
 		}
@@ -96,7 +96,7 @@ public enum NotificationState {
 	public static int getIllu(NotificationState state) {
 		switch (state) {
 			case NO_REPORTS:
-				return R.drawable.ill_no_message;
+				return R.drawable.img_no_message;
 			case EXPOSED:
 			case POSITIVE_TESTED:
 			default:

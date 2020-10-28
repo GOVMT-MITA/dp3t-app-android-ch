@@ -13,14 +13,14 @@ import java.util.HashMap;
 
 class InfoBoxModelCollection extends HashMap<String, InfoBoxModel> {
 
-	private static final String KEY_POSTFIX = "InfoBox";
+    private static final String KEY_POSTFIX = "InfoBox";
 
-	public InfoBoxModel getInfoBox(String languageKey) {
-		return get(getKeyForLang(languageKey));
-	}
+    public InfoBoxModel getInfoBox(String languageKey) {
+        return get(getKeyForLang(languageKey));
+    }
 
-	private static String getKeyForLang(String language) {
-		return language + KEY_POSTFIX;
-	}
+    private static String getKeyForLang(String language) {
+        return language + KEY_POSTFIX;
+    }
 
 }

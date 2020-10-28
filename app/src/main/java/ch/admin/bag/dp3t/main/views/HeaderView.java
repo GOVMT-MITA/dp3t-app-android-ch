@@ -47,16 +47,12 @@ public class HeaderView extends ConstraintLayout {
 	static final long INITIAL_DELAY = 500;
 
 	private static final int[] BACKGROUND_IMAGES =
-			new int[] { R.drawable.header_basel,
-					R.drawable.header_bern,
-					R.drawable.header_chur,
-					R.drawable.header_geneva,
-					R.drawable.header_lausanne,
-					R.drawable.header_locarno,
-					R.drawable.header_lugano,
-					R.drawable.header_luzern,
-					R.drawable.header_stgallen,
-					R.drawable.header_zurich };
+			new int[] { R.drawable.img_header_1,
+					R.drawable.img_header_2,
+					R.drawable.img_header_3,
+					R.drawable.img_header_4,
+					R.drawable.img_header_5,
+					R.drawable.img_header_6};
 	private static Integer backgroundImageIndex = null;
 
 	private ImageView backgroundImage;
@@ -145,7 +141,7 @@ public class HeaderView extends ConstraintLayout {
 				}
 			} else {
 				if (state.getTracingState() == TracingState.ACTIVE) {
-					iconRes = R.drawable.ic_begegnungen;
+					iconRes = R.drawable.ic_encounters;
 					iconTintColor = R.color.white;
 					iconBgRes = R.drawable.bg_header_icon_on;
 					backgroundColor = getResources().getColor(R.color.header_bg_on, null);

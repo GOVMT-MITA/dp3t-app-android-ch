@@ -9,7 +9,6 @@
   -->
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content">
 
@@ -17,32 +16,38 @@
 		style="@style/NextStep.Card"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
-		android:layout_gravity="bottom"
-		android:layout_marginTop="@dimen/card_what_to_do_ill_margin"
 		android:elevation="@dimen/card_elevation">
 
 		<LinearLayout
 			android:id="@+id/card_what_to_do_symptoms"
 			android:layout_width="match_parent"
-			android:layout_height="match_parent"
+			android:layout_height="wrap_content"
 			android:foreground="?selectableItemBackground"
 			android:gravity="center_vertical"
-			android:orientation="horizontal"
-			android:paddingLeft="@dimen/card_ill_width"
-			android:paddingTop="@dimen/spacing_large"
-			android:paddingBottom="@dimen/spacing_large">
+			android:orientation="horizontal">
+
+			<ImageView
+				android:id="@+id/card_wtd_symptoms_illustration"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="@dimen/spacing_large"
+				android:layout_gravity="center_vertical"
+				android:elevation="@dimen/card_elevation_2"
+				android:src="@drawable/img_symptoms" />
 
 			<LinearLayout
 				android:layout_width="0dp"
 				android:layout_height="wrap_content"
-				android:layout_marginLeft="@dimen/spacing_very_large"
+				android:layout_marginStart="@dimen/spacing_large"
+				android:layout_marginEnd="@dimen/spacing_large"
 				android:layout_weight="1"
 				android:gravity="center_vertical"
 				android:orientation="vertical"
-				android:paddingLeft="@dimen/spacing_small">
+				android:paddingStart="@dimen/spacing_small"
+				android:paddingEnd="0dp">
 
 				<TextView
-					style="@style/NextStep.Text"
+					style="@style/NextStep.Text.Bold.Purple"
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:text="@string/whattodo_subtitle_symptoms" />
@@ -59,22 +64,14 @@
 
 			<ImageView
 				android:layout_width="@dimen/chevron_size_title"
-				android:layout_marginEnd="@dimen/spacing_small"
 				android:layout_height="@dimen/chevron_size_title"
+				android:paddingStart="0dp"
+				android:paddingEnd="@dimen/spacing_medium"
 				android:src="@drawable/ic_chevron_right"
-				android:tint="@color/purple_main" />
+				android:tint="@color/dark_main" />
 
 		</LinearLayout>
 
 	</androidx.cardview.widget.CardView>
-
-	<ImageView
-		android:id="@+id/card_wtd_symptoms_illustration"
-		android:layout_width="@dimen/card_ill_width"
-		android:layout_height="110dp"
-		android:layout_marginStart="@dimen/spacing_large"
-		android:layout_marginBottom="@dimen/spacing_medium"
-		android:elevation="@dimen/card_elevation"
-		android:src="@drawable/ill_symptome" />
 
 </FrameLayout>

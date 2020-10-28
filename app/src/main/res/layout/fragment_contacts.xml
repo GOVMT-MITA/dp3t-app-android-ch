@@ -49,8 +49,7 @@
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:layout_marginStart="@dimen/spacing_medium_large"
-					android:layout_marginEnd="@dimen/spacing_medium_large"
-					android:layout_marginBottom="@dimen/spacing_medium_large">
+					android:layout_marginEnd="@dimen/spacing_medium_large">
 
 					<LinearLayout
 						android:layout_width="match_parent"
@@ -115,36 +114,41 @@
 				<LinearLayout
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
-					android:layout_marginStart="@dimen/spacing_large"
-					android:layout_marginTop="@dimen/spacing_huger"
-					android:layout_marginEnd="@dimen/spacing_large"
-					android:layout_marginBottom="@dimen/spacing_very_large"
-					android:orientation="vertical">
+					android:background="@color/grey_light"
+					android:gravity="center_horizontal"
+					android:orientation="vertical"
+					android:paddingStart="@dimen/spacing_large"
+					android:paddingEnd="@dimen/spacing_large"
+					android:paddingTop="@dimen/spacing_medium_large"
+					android:paddingBottom="@dimen/spacing_medium_large">
 
 					<TextView
 						style="@style/NextStep.Text.Bold"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:layout_marginBottom="@dimen/spacing_small"
-						android:text="@string/begegnung_detail_faq1_title" />
+						android:layout_marginTop="@dimen/spacing_medium"
+						android:text="@string/encounter_detail_faq1_title" />
 
 					<LinearLayout
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:orientation="horizontal">
+						android:orientation="horizontal"
+						android:layout_marginTop="@dimen/spacing_small">
 
 						<ImageView
 							android:layout_width="@dimen/icon_size"
 							android:layout_height="@dimen/icon_size"
-							android:layout_marginRight="@dimen/spacing_medium_large"
-							android:src="@drawable/ic_begegnungen"
-							android:tint="@color/blue_main" />
+							android:layout_marginEnd="@dimen/spacing_medium"
+							android:tint="@color/blue_main"
+							android:src="@drawable/ic_encounters" />
 
 						<TextView
 							style="@style/NextStep.Text"
 							android:layout_width="match_parent"
 							android:layout_height="wrap_content"
-							android:text="@string/begegnung_detail_faq1_text" />
+							android:breakStrategy="high_quality"
+							android:hyphenationFrequency="full"
+							android:text="@string/encounter_detail_faq1_text" />
 
 					</LinearLayout>
 
@@ -152,27 +156,29 @@
 						style="@style/NextStep.Text.Bold"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:layout_marginTop="@dimen/spacing_very_large"
-						android:layout_marginBottom="@dimen/spacing_small"
-						android:text="@string/begegnung_detail_faq2_title" />
+						android:layout_marginTop="@dimen/spacing_medium"
+						android:text="@string/encounter_detail_faq2_title" />
 
 					<LinearLayout
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:orientation="horizontal">
+						android:orientation="horizontal"
+						android:layout_marginTop="@dimen/spacing_small">
 
 						<ImageView
 							android:layout_width="@dimen/icon_size"
 							android:layout_height="@dimen/icon_size"
-							android:layout_marginRight="@dimen/spacing_medium_large"
-							android:src="@drawable/ic_lock"
-							android:tint="@color/blue_main" />
+							android:layout_marginEnd="@dimen/spacing_medium"
+							android:tint="@color/blue_main"
+							android:src="@drawable/ic_lock" />
 
 						<TextView
 							style="@style/NextStep.Text"
 							android:layout_width="match_parent"
 							android:layout_height="wrap_content"
-							android:text="@string/begegnung_detail_faq2_text" />
+							android:breakStrategy="high_quality"
+							android:hyphenationFrequency="full"
+							android:text="@string/encounter_detail_faq2_text" />
 
 					</LinearLayout>
 
@@ -180,44 +186,56 @@
 						style="@style/NextStep.Text.Bold"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:layout_marginTop="@dimen/spacing_very_large"
-						android:layout_marginBottom="@dimen/spacing_small"
-						android:text="@string/begegnungen_detail_faq3_title" />
+						android:layout_marginTop="@dimen/spacing_medium"
+						android:text="@string/encounters_detail_faq3_title" />
 
 					<LinearLayout
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:layout_marginBottom="@dimen/spacing_medium"
-						android:orientation="horizontal">
+						android:orientation="horizontal"
+						android:layout_marginTop="@dimen/spacing_small">
 
 						<ImageView
 							android:layout_width="@dimen/icon_size"
 							android:layout_height="@dimen/icon_size"
-							android:layout_marginRight="@dimen/spacing_medium_large"
-							android:src="@drawable/ic_bluetooth"
-							android:tint="@color/blue_main" />
+							android:layout_marginEnd="@dimen/spacing_medium"
+							android:tint="@color/blue_main"
+							android:src="@drawable/ic_bluetooth" />
 
 						<TextView
 							style="@style/NextStep.Text"
 							android:layout_width="match_parent"
 							android:layout_height="wrap_content"
-							android:text="@string/begegnungen_detail_faq3_text" />
+							android:breakStrategy="high_quality"
+							android:hyphenationFrequency="full"
+							android:text="@string/encounters_detail_faq3_text" />
 
 					</LinearLayout>
 
-					<Button
+					<LinearLayout
 						android:id="@+id/contacts_faq_button"
-						style="@style/NextStep.Button.Outlined"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:layout_gravity="center_horizontal"
-						android:layout_marginStart="@dimen/spacing_medium"
-						android:layout_marginTop="@dimen/spacing_huger"
-						android:layout_marginEnd="@dimen/spacing_medium"
-						android:layout_marginBottom="@dimen/spacing_huger"
-						android:drawableRight="@drawable/ic_launch_blue"
-						android:paddingStart="@dimen/padding_start_icon_button"
-						android:text="@string/faq_button_title" />
+						android:layout_marginTop="@dimen/spacing_small"
+						android:layout_marginBottom="@dimen/spacing_small"
+						android:paddingTop="@dimen/spacing_small"
+						android:paddingBottom="@dimen/spacing_small"
+						android:orientation="horizontal">
+
+						<ImageView
+							android:layout_width="@dimen/icon_size"
+							android:layout_height="@dimen/icon_size"
+							android:layout_marginEnd="@dimen/spacing_small"
+							android:src="@drawable/ic_launch"
+							android:tint="@color/blue_main" />
+
+						<TextView
+							style="@style/NextStep.Text.Bold.Blue"
+							android:layout_width="match_parent"
+							android:layout_height="wrap_content"
+							android:text="@string/faq_button_title" />
+
+					</LinearLayout>
 
 				</LinearLayout>
 

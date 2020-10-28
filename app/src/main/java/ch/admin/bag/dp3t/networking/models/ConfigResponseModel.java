@@ -11,25 +11,25 @@ package ch.admin.bag.dp3t.networking.models;
 
 public class ConfigResponseModel {
 
-	private boolean forceUpdate;
-	private InfoBoxModelCollection infoBox;
-	private SdkConfigModel androidGaenSdkConfig;
+    private boolean forceUpdate;
+    private InfoBoxModelCollection infoBox;
+    private SdkConfigModel androidGaenSdkConfig;
 
-	public boolean getDoForceUpdate() {
-		return forceUpdate;
-	}
+    public boolean getDoForceUpdate() {
+        return forceUpdate;
+    }
 
-	public InfoBoxModelCollection getInfoBox() {
-		return infoBox;
-	}
+    public InfoBoxModelCollection getInfoBox() {
+        return infoBox;
+    }
 
-	public InfoBoxModel getInfoBox(String languageKey) {
-		if (infoBox == null) return null;
-		return infoBox.getInfoBox(languageKey);
-	}
+    public InfoBoxModel getInfoBox(String languageKey) {
+        if (infoBox == null) return null;
+        return infoBox.getInfoBox(languageKey);
+    }
 
-	public SdkConfigModel getSdkConfig() {
-		return androidGaenSdkConfig;
-	}
+    public SdkConfigModel getSdkConfig() {
+        return androidGaenSdkConfig;
+    }
 
 }
