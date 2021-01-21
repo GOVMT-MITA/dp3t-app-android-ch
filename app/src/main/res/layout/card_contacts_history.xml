@@ -35,11 +35,11 @@
                 android:orientation="vertical">
 
                 <TextView
-                    style="@style/NextStep.Text.Small.Bold"
+                    style="@style/NextStep.Text.Bold"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/spacing_tiny_small"
-                    android:text="@string/encounter_detail_last_sync_title" />
+                    android:text="@string/begegnung_detail_last_sync_title" />
 
                 <TextView
                     android:id="@+id/card_history_last_synchronization_date"
@@ -48,7 +48,7 @@
                     android:layout_height="wrap_content"
                     android:breakStrategy="high_quality"
                     android:hyphenationFrequency="full"
-                    tools:text="Unknown" />
+                    tools:text="" />
 
             </LinearLayout>
 
@@ -72,8 +72,10 @@
             android:id="@+id/card_history_chevron"
             android:layout_width="@dimen/chevron_size_title"
             android:layout_height="@dimen/chevron_size_title"
-            android:layout_marginEnd="@dimen/spacing_small"
-            android:src="@drawable/ic_chevron_right" />
+            android:paddingStart="0dp"
+            android:paddingEnd="@dimen/spacing_medium"
+            android:src="@drawable/ic_chevron_right"
+            android:tint="@color/dark_main" />
 
     </LinearLayout>
 

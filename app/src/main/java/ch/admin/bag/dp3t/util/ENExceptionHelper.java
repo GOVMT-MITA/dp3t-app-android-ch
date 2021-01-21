@@ -16,13 +16,15 @@ import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.os.UserManager;
 
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.nearby.exposurenotification.ExposureNotificationStatusCodes;
+
 import java.security.MessageDigest;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.nearby.exposurenotification.ExposureNotificationStatusCodes;
+import ch.admin.bag.dp3t.R;
 
 public class ENExceptionHelper {
 
@@ -42,23 +44,23 @@ public class ENExceptionHelper {
                 switch (connectionStatusCode) {
                     case ExposureNotificationStatusCodes.FAILED_NOT_SUPPORTED:
                         if (!supportsBLE(context)) {
-                            errorDetailMessage = "Bluetooth Low Energy is not supported on this device.";
+                            errorDetailMessage = context.getString(R.string.enexceptionhelper_bluetooth_unsupported);
                             attachExceptionMessage = false;
                         } else if (!isUserDeviceOwner(context)) {
-                            errorDetailMessage = "ExposureNotifications are only supported for the main device user!";
+                            errorDetailMessage = context.getString(R.string.enexceptionhelper_en_unsupported_for_account);
                             attachExceptionMessage = false;
                         } else if (!supportsMultiAds()) {
-                            errorDetailMessage = "Bluetooth Multiple Advertisement is not supported on this device.";
+                            errorDetailMessage = context.getString(R.string.enexceptionhelper_bluetooth_multiple_ad_not_supported);
                         } else {
-                            errorDetailMessage = "This device does not support Exposure Notifications.";
+                            errorDetailMessage = context.getString(R.string.enexceptionhelper_en_unsupported);
                         }
                         break;
                     case ExposureNotificationStatusCodes.FAILED_UNAUTHORIZED:
                         if (!isPackageSignatureValid(context)) {
-                            errorDetailMessage = "Unauthorized package signature";
+                            errorDetailMessage = context.getString(R.string.enexceptionhelper_package_signature_invalid);
                             attachExceptionMessage = false;
                         } else {
-                            errorDetailMessage = "Unauthorized API usage.";
+                            errorDetailMessage = context.getString(R.string.enexceptionhelper_api_unauthorized);
                         }
                         break;
                     default:
@@ -121,5 +123,4 @@ public class ENExceptionHelper {
         }
         return true;
     }
-
 }

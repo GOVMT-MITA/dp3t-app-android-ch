@@ -56,12 +56,12 @@ public class OnboardingSlidePageAdapter extends FragmentStateAdapter {
                         true, false);
             case 3:
                 return OnboardingContentFragment.newInstance(
-                        R.string.onboarding_proximity_title,
-                        R.string.onboarding_proximity_heading,
+                        R.string.onboarding_begegnungen_title,
+                        R.string.onboarding_begegnungen_heading,
                         R.drawable.img_bluetooth,
-                        R.string.onboarding_proximity_text1,
+                        R.string.onboarding_begegnungen_text1,
                         R.drawable.ic_encounters,
-                        R.string.onboarding_proximity_text2,
+                        R.string.onboarding_begegnungen_text2,
                         R.drawable.ic_bluetooth,
                         null,
                         null,
@@ -69,12 +69,12 @@ public class OnboardingSlidePageAdapter extends FragmentStateAdapter {
                         false, false);
             case 4:
                 return OnboardingContentFragment.newInstance(
-                        R.string.onboarding_report_title,
-                        R.string.onboarding_report_heading,
+                        R.string.onboarding_meldung_title,
+                        R.string.onboarding_meldung_heading,
                         R.drawable.img_report,
-                        R.string.onboarding_report_text1,
+                        R.string.onboarding_meldung_text1,
                         R.drawable.ic_message_alert,
-                        R.string.onboarding_report_text2,
+                        R.string.onboarding_meldung_text2,
                         R.drawable.ic_home,
                         null,
                         null,
@@ -94,7 +94,7 @@ public class OnboardingSlidePageAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 8;
+        return 9;
     }
 
 }

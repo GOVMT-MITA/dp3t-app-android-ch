@@ -12,7 +12,6 @@ package ch.admin.bag.dp3t.onboarding.util;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.view.Gravity;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
@@ -40,7 +39,6 @@ public class PermissionButtonUtil {
 		button.setText(grantedLabel);
 		button.setClickable(false);
 		button.setElevation(0);
-		button.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
 		button.setBackgroundTintList(ContextCompat.getColorStateList(context, R.color.white));
 	}
 

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2020 Ubique Innovation AG <https://www.ubique.ch>
   ~
   ~ This Source Code Form is subject to the terms of the Mozilla Public
@@ -10,9 +9,8 @@
   -->
 
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
-
-	<string name="debug_test_notification">Test Exposure Notification</string>
-	<string name="debug_devoptions_title">Developer Options</string>
-	<string name="debug_certpinning_enabled">Certificate Pinning enabled</string>
-
+    <string name="debug_test_notification">Test Exposure Notification</string>
+    <string name="debug_devoptions_title">Developer Options</string>
+    <string name="debug_certpinning_enabled">Certificate Pinning enabled</string>
+    <string name="number_of_exposure_days">How many exposure days should be simulated?</string>
 </resources>

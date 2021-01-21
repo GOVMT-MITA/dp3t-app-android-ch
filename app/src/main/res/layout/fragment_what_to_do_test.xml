@@ -9,205 +9,293 @@
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
-	android:layout_width="match_parent"
-	android:layout_height="match_parent"
-	android:background="@color/grey_light"
-	android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_light"
+    android:orientation="vertical">
 
-	<androidx.appcompat.widget.Toolbar
-		android:id="@+id/wtd_test_toolbar"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		app:navigationContentDescription="@string/android_accessibility_back_button"
-		app:navigationIcon="@drawable/ic_arrow_back"
-		app:title="@string/inform_detail_navigation_title" />
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/wtd_test_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:navigationContentDescription="@string/android_accessibility_back_button"
+        app:navigationIcon="@drawable/ic_arrow_back"
+        app:title="@string/inform_detail_navigation_title" />
 
-	<ScrollView
-		android:layout_width="match_parent"
-		android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-		<LinearLayout
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:layout_marginTop="@dimen/spacing_larger"
-			android:gravity="center_horizontal"
-			android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_larger"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
-			<TextView
-				style="@style/NextStep.Text.Bold.Purple"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:gravity="center_horizontal"
-				android:text="@string/inform_detail_subtitle" />
+            <TextView
+                style="@style/NextStep.Text.Bold.Purple"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="@string/inform_detail_subtitle" />
 
-			<TextView
-				style="@style/NextStep.Text.Title"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_marginBottom="@dimen/spacing_medium_large"
-				android:gravity="center_horizontal"
-				android:text="@string/inform_detail_title" />
+            <TextView
+                style="@style/NextStep.Text.Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/spacing_medium_large"
+                android:gravity="center_horizontal"
+                android:text="@string/inform_detail_title" />
 
-			<ImageView
-				android:layout_width="wrap_content"
-				android:layout_height="wrap_content"
-				android:layout_marginTop="@dimen/spacing_large"
-				android:src="@drawable/img_positive" />
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_large"
+                android:src="@drawable/img_positive" />
 
-			<androidx.cardview.widget.CardView
-				style="@style/NextStep.Card"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_marginStart="@dimen/spacing_medium_large"
-				android:layout_marginTop="-20dp"
-				android:layout_marginEnd="@dimen/spacing_medium_large"
-				android:elevation="@dimen/card_elevation">
+            <androidx.cardview.widget.CardView
+                style="@style/NextStep.Card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/spacing_medium_large"
+                android:layout_marginTop="-20dp"
+                android:layout_marginEnd="@dimen/spacing_medium_large"
+                android:elevation="@dimen/card_elevation">
 
-				<LinearLayout
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:foreground="?selectableItemBackground"
-					android:orientation="vertical"
-					android:paddingLeft="@dimen/spacing_larger"
-					android:paddingRight="@dimen/spacing_larger"
-					android:paddingTop="@dimen/spacing_medium_large"
-					android:paddingBottom="@dimen/spacing_medium_large">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_medium_large"
+                    android:layout_marginBottom="@dimen/spacing_medium_large"
+                    android:orientation="vertical">
 
-					<TextView
-						style="@style/NextStep.Text.SubTitle.Purple"
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:text="@string/inform_detail_box_subtitle" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_larger"
+                        android:layout_marginEnd="@dimen/spacing_larger"
+                        android:orientation="vertical">
 
-					<TextView
-						style="@style/NextStep.Text.Title"
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:layout_marginTop="@dimen/spacing_tiny_small"
-						android:layout_marginBottom="@dimen/spacing_tiny_small"
-						android:text="@string/inform_detail_box_title" />
+                        <TextView
+                            android:id="@+id/wtd_inform_box_supertitle"
+                            style="@style/NextStep.Text.SubTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/inform_detail_box_subtitle"
+                            android:textColor="@color/purple_main" />
 
-					<TextView
-						style="@style/NextStep.Text"
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:text="@string/inform_detail_box_text" />
+                        <TextView
+                            android:id="@+id/wtd_inform_box_title"
+                            style="@style/NextStep.Text.Title"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_tiny_small"
+                            android:layout_marginBottom="@dimen/spacing_tiny_small"
+                            android:text="@string/inform_detail_box_title" />
 
-					<Button
-						android:id="@+id/wtd_inform_button"
-						style="@style/NextStep.Button.Purple"
-						android:textAllCaps="true"
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:layout_gravity="center_horizontal"
-						android:layout_marginTop="@dimen/spacing_medium"
-						android:text="@string/inform_detail_box_button" />
+                        <TextView
+                            android:id="@+id/wtd_inform_box_text"
+                            style="@style/NextStep.Text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/inform_detail_box_text" />
 
-				</LinearLayout>
+                        <Button
+                            android:id="@+id/wtd_inform_button"
+                            style="@style/NextStep.Button.Purple"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
+                            android:layout_marginTop="@dimen/spacing_medium"
+                            android:text="@string/inform_detail_box_button"
+                            android:textAllCaps="true" />
 
-			</androidx.cardview.widget.CardView>
+                    </LinearLayout>
 
-			<LinearLayout
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:background="@color/grey_light"
-				android:gravity="center_horizontal"
-				android:orientation="vertical"
-				android:paddingStart="@dimen/spacing_large"
-				android:paddingEnd="@dimen/spacing_large"
-				android:paddingTop="@dimen/spacing_medium_large"
-				android:paddingBottom="@dimen/spacing_medium_large">
+                    <LinearLayout
+                        android:id="@+id/wtd_inform_infobox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_larger"
+                        android:layout_marginTop="@dimen/spacing_small"
+                        android:layout_marginEnd="@dimen/spacing_larger"
+                        android:background="@color/status_blue_bg"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/spacing_medium"
+                        android:visibility="gone"
+                        tools:visibility="visible">
 
-				<TextView
-					style="@style/NextStep.Text.Bold"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_marginTop="@dimen/spacing_medium"
-					android:text="@string/inform_detail_faq1_title" />
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="@dimen/spacing_very_small"
+                            android:src="@drawable/ic_info"
+                            android:tint="@color/dark_main" />
 
-				<LinearLayout
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:orientation="horizontal"
-					android:layout_marginTop="@dimen/spacing_small">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
 
-					<ImageView
-						android:layout_width="@dimen/icon_size"
-						android:layout_height="@dimen/icon_size"
-						android:layout_marginEnd="@dimen/spacing_medium"
-						android:src="@drawable/ic_verified_user"
-						android:tint="@color/purple_main" />
+                            <TextView
+                                android:id="@+id/wtd_inform_infobox_title"
+                                style="@style/NextStep.Text.Bold"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginBottom="@dimen/spacing_very_small"
+                                tools:text="Infobox Title" />
 
-					<TextView
-						style="@style/NextStep.Text"
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:breakStrategy="high_quality"
-						android:hyphenationFrequency="full"
-						android:text="@string/inform_detail_faq1_text" />
+                            <TextView
+                                android:id="@+id/wtd_inform_infobox_msg"
+                                style="@style/NextStep.Text"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                tools:text="Text for the Infobox" />
 
-				</LinearLayout>
+                            <LinearLayout
+                                android:id="@+id/wtd_inform_infobox_link_layout"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/spacing_very_small"
+                                android:background="@drawable/ripple_button"
+                                android:orientation="horizontal">
 
-				<TextView
-					style="@style/NextStep.Text.Bold"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_marginTop="@dimen/spacing_medium"
-					android:text="@string/inform_detail_faq2_title" />
+                                <ImageView
+                                    android:layout_width="@dimen/icon_size"
+                                    android:layout_height="@dimen/icon_size"
+                                    android:src="@drawable/ic_launch"
+                                    android:tint="@color/blue_main" />
 
-				<LinearLayout
+                                <TextView
+                                    android:id="@+id/wtd_inform_infobox_link_text"
+                                    style="@style/NextStep.Text.Bold.Blue"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/spacing_small"
+                                    tools:text="@string/infoline_tel_number" />
 
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:orientation="horizontal"
-					android:layout_marginTop="@dimen/spacing_small">
+                            </LinearLayout>
 
-					<ImageView
-						android:layout_width="@dimen/icon_size"
-						android:layout_height="@dimen/icon_size"
-						android:layout_marginEnd="@dimen/spacing_medium"
-						android:src="@drawable/ic_person"
-						android:tint="@color/purple_main" />
+                        </LinearLayout>
 
-					<TextView
-						style="@style/NextStep.Text"
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:breakStrategy="high_quality"
-						android:hyphenationFrequency="full"
-						android:text="@string/inform_detail_faq2_text" />
+                    </LinearLayout>
 
-				</LinearLayout>
+                </LinearLayout>
 
-				<LinearLayout
-					android:id="@+id/wtd_inform_faq_button"
-					android:layout_width="match_parent"
-					android:layout_height="wrap_content"
-					android:layout_marginBottom="@dimen/spacing_small"
-					android:paddingTop="@dimen/spacing_small"
-					android:paddingBottom="@dimen/spacing_small"
-					android:orientation="horizontal">
+            </androidx.cardview.widget.CardView>
 
-					<ImageView
-						android:layout_width="@dimen/icon_size"
-						android:layout_height="@dimen/icon_size"
-						android:layout_marginEnd="@dimen/spacing_small"
-						android:src="@drawable/ic_launch"
-						android:tint="@color/purple_main" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/grey_light"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:paddingStart="@dimen/spacing_large"
+                android:paddingTop="@dimen/spacing_medium_large"
+                android:paddingEnd="@dimen/spacing_large"
+                android:paddingBottom="@dimen/spacing_medium_large">
 
-					<TextView
-						style="@style/NextStep.Text.Bold.Purple"
-						android:layout_width="match_parent"
-						android:layout_height="wrap_content"
-						android:text="@string/faq_button_title" />
+                <LinearLayout
+                    android:id="@+id/wtd_inform_faq_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-				</LinearLayout>
+                    <TextView
+                        style="@style/NextStep.Text.Bold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_medium"
+                        android:text="@string/inform_detail_faq1_title" />
 
-			</LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_small"
+                        android:orientation="horizontal">
 
-		</LinearLayout>
+                        <ImageView
+                            android:layout_width="@dimen/icon_size"
+                            android:layout_height="@dimen/icon_size"
+                            android:layout_marginEnd="@dimen/spacing_medium"
+                            android:src="@drawable/ic_verified_user"
+                            android:tint="@color/purple_main" />
 
-	</ScrollView>
+                        <TextView
+                            style="@style/NextStep.Text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:breakStrategy="high_quality"
+                            android:hyphenationFrequency="full"
+                            android:text="@string/inform_detail_faq1_text" />
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        style="@style/NextStep.Text.Bold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_medium"
+                        android:text="@string/inform_detail_faq2_title" />
+
+                    <LinearLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_small"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_size"
+                            android:layout_height="@dimen/icon_size"
+                            android:layout_marginEnd="@dimen/spacing_medium"
+                            android:src="@drawable/ic_person"
+                            android:tint="@color/purple_main" />
+
+                        <TextView
+                            style="@style/NextStep.Text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:breakStrategy="high_quality"
+                            android:hyphenationFrequency="full"
+                            android:text="@string/inform_detail_faq2_text" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/wtd_inform_faq_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/spacing_small"
+                        android:orientation="horizontal"
+                        android:paddingTop="@dimen/spacing_small"
+                        android:paddingBottom="@dimen/spacing_small">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_size"
+                            android:layout_height="@dimen/icon_size"
+                            android:layout_marginEnd="@dimen/spacing_small"
+                            android:src="@drawable/ic_launch"
+                            android:tint="@color/purple_main" />
+
+                        <TextView
+                            style="@style/NextStep.Text.Bold.Purple"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/faq_button_title" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

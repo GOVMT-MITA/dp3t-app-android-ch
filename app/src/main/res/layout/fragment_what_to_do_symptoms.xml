@@ -75,10 +75,11 @@
                     android:paddingBottom="@dimen/spacing_medium_large">
 
                     <TextView
-                        style="@style/NextStep.Text.SubTitle.Purple"
+                        style="@style/NextStep.Text.SubTitle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/symptom_detail_box_subtitle" />
+                        android:text="@string/symptom_detail_box_subtitle"
+                        android:textColor="@color/purple_main" />
 
                     <TextView
                         style="@style/NextStep.Text.Title"

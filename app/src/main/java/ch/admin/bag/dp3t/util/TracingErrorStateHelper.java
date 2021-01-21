@@ -19,11 +19,11 @@ import android.widget.TextView;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.StringRes;
 
+import org.dpppt.android.sdk.TracingStatus;
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-
-import org.dpppt.android.sdk.TracingStatus;
 
 import ch.admin.bag.dp3t.R;
 
@@ -59,7 +59,7 @@ public class TracingErrorStateHelper {
             case SYNC_ERROR_TIMING:
                 return R.string.time_inconsistency_title;
             case GAEN_NOT_AVAILABLE:
-                return R.string.tracing_not_aviable;
+                return R.string.gaen_not_aviable;
             case GAEN_UNEXPECTEDLY_DISABLED:
                 return R.string.bluetooth_setting_tracking_inactive;
             case SYNC_ERROR_SERVER:
@@ -68,10 +68,10 @@ public class TracingErrorStateHelper {
             case SYNC_ERROR_NO_SPACE:
             case SYNC_ERROR_SIGNATURE:
             case SYNC_ERROR_API_EXCEPTION:
-                return R.string.homescreen_report_data_outdated_title;
+                return R.string.homescreen_meldung_data_outdated_title;
             case BLE_NOT_SUPPORTED:
             default:
-                return R.string.encounters_restart_error_title;
+                return R.string.begegnungen_restart_error_title;
         }
     }
 
@@ -114,13 +114,13 @@ public class TracingErrorStateHelper {
             case BLE_DISABLED:
                 return R.string.bluetooth_turn_on_button_title;
             case GAEN_UNEXPECTEDLY_DISABLED:
-                return R.string.onboarding_tracing_button_activate;
+                return R.string.onboarding_gaen_button_activate;
             case SYNC_ERROR_SERVER:
             case SYNC_ERROR_NETWORK:
             case SYNC_ERROR_SSLTLS:
             case SYNC_ERROR_SIGNATURE:
             case SYNC_ERROR_NO_SPACE:
-                return R.string.homescreen_report_data_outdated_retry_button;
+                return R.string.homescreen_meldung_data_outdated_retry_button;
             case GAEN_NOT_AVAILABLE:
                 return R.string.playservices_update;
             case SYNC_ERROR_TIMING:

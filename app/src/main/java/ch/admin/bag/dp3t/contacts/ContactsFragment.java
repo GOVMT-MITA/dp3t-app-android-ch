@@ -10,8 +10,6 @@
 package ch.admin.bag.dp3t.contacts;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CompoundButton;
@@ -32,10 +30,11 @@ import org.dpppt.android.sdk.internal.logger.Logger;
 
 import ch.admin.bag.dp3t.BuildConfig;
 import ch.admin.bag.dp3t.R;
-import ch.admin.bag.dp3t.main.TracingBoxFragment;
-import ch.admin.bag.dp3t.main.views.HeaderView;
+import ch.admin.bag.dp3t.home.TracingBoxFragment;
+import ch.admin.bag.dp3t.home.views.HeaderView;
 import ch.admin.bag.dp3t.util.DateUtils;
 import ch.admin.bag.dp3t.util.ENExceptionHelper;
+import ch.admin.bag.dp3t.util.UrlUtil;
 import ch.admin.bag.dp3t.viewmodel.TracingViewModel;
 
 public class ContactsFragment extends Fragment {
@@ -85,10 +84,7 @@ public class ContactsFragment extends Fragment {
         setupTracingView();
         setupHistoryCard(view);
 
-        view.findViewById(R.id.contacts_faq_button).setOnClickListener(v -> {
-            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.faq_button_url)));
-            startActivity(browserIntent);
-        });
+        view.findViewById(R.id.contacts_faq_button).setOnClickListener(v -> UrlUtil.openUrl(v.getContext(), getString(R.string.faq_button_url)));
     }
 
     private void setupTracingView() {
@@ -100,7 +96,6 @@ public class ContactsFragment extends Fragment {
                 if (isChecked) {
                     tracingViewModel.enableTracing(activity,
                             () -> {
-                                // success, do nothing
                             },
                             (e) -> {
                                 String message = ENExceptionHelper.getErrorMessage(e, activity);
@@ -152,7 +147,7 @@ public class ContactsFragment extends Fragment {
                         break;
                     }
                 }
-                if (timeSync == null) lastSyncDate.setText("Unknown");
+                if (timeSync == null) lastSyncDate.setText("");
                 historyCardLoadingView.animate()
                         .alpha(0f)
                         .setDuration(getResources().getInteger(android.R.integer.config_shortAnimTime))

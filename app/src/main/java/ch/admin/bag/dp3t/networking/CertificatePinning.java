@@ -17,6 +17,9 @@ import okhttp3.CertificatePinner;
 public class CertificatePinning {
 
     private static final CertificatePinner CERTIFICATE_PINNER_LIVE = new CertificatePinner.Builder()
+            .add("dummy-auth-url.com", "dummy-certificate")
+            .add("dummy-config-url.com", "dummy-certificate")
+            .add("dummy-ws-url.com", "dummy-certificate")
             .build();
 
     private static final CertificatePinner CERTIFICATE_PINNER_DISABLED = new CertificatePinner.Builder().build();
