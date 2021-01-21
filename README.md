@@ -12,7 +12,9 @@ DP-3T is a free-standing effort started at EPFL and ETHZ that produced this prot
 ## Introduction
 CovidAlertMT is a COVID-19 tracing client based on the official COVID-19 tracing solution for Switzerland, with changes and optimisations to accommodate Maltese requirements.
 
+<p align="center">
 English
+</p>
 <p align="center">
 <img src="documentation/screenshots/en/screenshot1.png" width="20%">
 <img src="documentation/screenshots/en/screenshot2.png" width="20%">
@@ -20,7 +22,9 @@ English
 <img src="documentation/screenshots/en/screenshot4.png" width="20%">
 </p>
 
+<p align="center">
 Maltese
+</p>
 <p align="center">
 <img src="documentation/screenshots/mt/screenshot1.png" width="20%">
 <img src="documentation/screenshots/mt/screenshot2.png" width="20%">
