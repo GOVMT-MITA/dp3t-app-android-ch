@@ -15,7 +15,7 @@
 	android:viewportHeight="4.23333">
 	<path
 		android:fillAlpha="1"
-		android:fillColor="@color/status_purple_bg"
+		android:fillColor="@color/status_blue"
 		android:pathData="M0,0L4.23333,0L4.23333,4.23334Z"
 		android:strokeWidth="0.26458332"
 		android:strokeAlpha="1"

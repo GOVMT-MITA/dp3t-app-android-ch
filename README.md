@@ -1,7 +1,6 @@
-# SwissCovid: DP3T Android App for Switzerland
+# CovidAlertMT: DP3T Android App for Malta
 
-[![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://github.com/DP-3T/dp3t-app-android-ch/blob/master/LICENSE)
-![Android Build](https://github.com/DP-3T/dp3t-app-android-ch/workflows/Android%20Build/badge.svg)
+[![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://github.com/GOVMT-MITA/dp3t-app-ios-mt/blob/developmt/LICENSE)
 
 
 ## DP3T
@@ -11,8 +10,11 @@ DP-3T is a free-standing effort started at EPFL and ETHZ that produced this prot
 
 
 ## Introduction
-This is a COVID-19 tracing client using the [DP3T Android SDK](https://github.com/DP-3T/dp3t-sdk-android). It is based on the previously released demo app, but uses the newest version of the SDK. This project will be released as the official COVID-19 tracing solution for Switzerland, therefore UX, messages and flows are optimized for this specific case. Nevertheless, the source code should be a solid foundation to build a similar app for other countries and demostrate how the SDK can be used in a real app.
-The app design, UX and implementation was done by [Ubique](https://www.ubique.ch?app=github).
+CovidAlertMT is a COVID-19 tracing client based on the official COVID-19 tracing solution for Switzerland, with changes and optimisations to accommodate Maltese requirements.
+
+<p align="center">
+English
+</p>
 <p align="center">
 <img src="documentation/screenshots/en/screenshot1.png" width="20%">
 <img src="documentation/screenshots/en/screenshot2.png" width="20%">
@@ -20,21 +22,29 @@ The app design, UX and implementation was done by [Ubique](https://www.ubique.ch
 <img src="documentation/screenshots/en/screenshot4.png" width="20%">
 </p>
 
+<p align="center">
+Maltese
+</p>
+<p align="center">
+<img src="documentation/screenshots/mt/screenshot1.png" width="20%">
+<img src="documentation/screenshots/mt/screenshot2.png" width="20%">
+<img src="documentation/screenshots/mt/screenshot3.png" width="20%">
+<img src="documentation/screenshots/mt/screenshot4.png" width="20%">
+</p>
+
+
 ## Contribution Guide
+This project is open-source and we welcome any feedback on the code regarding both the implementation and security aspects.
 
-This project is truly open-source and we welcome any feedback on the code regarding both the implementation and security aspects.
+Bugs or potential problems should be reported using Github issues. Pull requests that improve the quality of the source code are welcomed. 
 
-Bugs or potential problems should be reported using Github issues. We welcome all pull requests that improve the quality of the source code. Please note that the app will be available with approved translations in English, German, French, Italian, Romansh, Albanian, Bosnian, Croatian, Portuguese, Serbian and Spanish. Pull requests for additional translations currently won't be merged.
-
-Platform independent UX and design discussions should be reported in [dp3t-ux-screenflows-ch](https://github.com/DP-3T/dp3t-ux-screenflows-ch)
 
 ## Repositories
 * Android SDK & Calibration app: [dp3t-sdk-android](https://github.com/DP-3T/dp3t-sdk-android)
 * iOS SDK & Calibration app: [dp3t-sdk-ios](https://github.com/DP-3T/dp3t-sdk-ios)
-* Android App: [dp3t-app-android](https://github.com/DP-3T/dp3t-app-android-ch)
-* iOS App: [dp3t-app-ios](https://github.com/DP-3T/dp3t-app-ios-ch)
-* Backend SDK: [dp3t-sdk-backend](https://github.com/DP-3T/dp3t-sdk-backend)
-* UX & Screenflows [dp3t-ux-screenflows-ch](https://github.com/DP-3T/dp3t-ux-screenflows-ch)
+* Android App: [dp3t-app-android](https://github.com/GOVMT-MITA/dp3t-app-android-mt)
+* iOS App: [dp3t-app-ios](https://github.com/GOVMT-MITA/dp3t-app-ios-mt)
+* Backend SDK: [dp3t-sdk-backend](https://github.com/GOVMT-MITA/dp3t-sdk-backend)
 
 
 ## Further Documentation
@@ -42,18 +52,15 @@ The full set of documents for DP3T is at https://github.com/DP-3T/documents. Ple
 
 A description of the usage of the Google Exposure Notifcation API can be found [here](https://github.com/DP-3T/dp3t-sdk-android/blob/master/EXPOSURE_NOTIFICATION_API_USAGE.md).
 
+
 ## Installation and Building
+The project can be opened  and compiled with Android Studio 4.0 or later, with Gradle taking care of most of the configuration. <strong>build.gradle</strong> and <strong>backend_certs.gradle</strong> must be amended to replace ‘dummy’ text with local configuration, based on the intended DP3T backend environment. 
 
-The project can be opened with Android Studio 3.6.1 or later or you can build the project with Gradle using
-```sh
-$ ./gradlew assembleProdRelease
-```
-The APK is generated under app/build/outputs/apk/prod/release/package-prod-release.apk
+A custom <strong>keystore.properties</strong> file is also required to compile signed builds, based on parameters found in <strong>build.gradle</strong>. The signed APK is generated under app/build/outputs/apk/prod/release/package-prod-release.apk
 
-The app will not be functional unless your Google account is whitelisted for ExposureNotification testing. Please install the app from the [Google PlayStore](https://play.google.com/store/apps/details?id=ch.admin.bag.dp3t).
+The app will not be functional unless your Google account is whitelisted for ExposureNotification testing. 
 
 ## Reproducible builds
-
 To verify that the app distributed on the PlayStore was built by the source code published here, please see the instructions in [REPRODUCIBLE_BUILDS.md](REPRODUCIBLE_BUILDS.md).
 
 ## License

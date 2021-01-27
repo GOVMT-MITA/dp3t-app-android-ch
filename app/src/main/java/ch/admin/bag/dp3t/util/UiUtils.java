@@ -12,12 +12,16 @@ package ch.admin.bag.dp3t.util;
 
 import android.content.res.Resources;
 import android.util.TypedValue;
+
 import androidx.annotation.NonNull;
 
 public class UiUtils {
 
-	public static int dpToPx(@NonNull Resources resources, int dp) {
-		return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.getDisplayMetrics());
-	}
+    public static int dpToPx(@NonNull Resources resources, int dp) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, resources.getDisplayMetrics());
+    }
 
+    public static float computeScrollAnimProgress(int scrollY, int scrollRange) {
+        return Math.min(scrollY, scrollRange) / (float) scrollRange;
+    }
 }

@@ -14,13 +14,13 @@ import android.os.Build;
 
 import androidx.annotation.NonNull;
 
-import java.io.IOException;
-import java.security.PublicKey;
-
 import org.dpppt.android.sdk.DP3T;
 import org.dpppt.android.sdk.backend.SignatureVerificationInterceptor;
 import org.dpppt.android.sdk.backend.UserAgentInterceptor;
 import org.dpppt.android.sdk.util.SignatureUtil;
+
+import java.io.IOException;
+import java.security.PublicKey;
 
 import ch.admin.bag.dp3t.BuildConfig;
 import ch.admin.bag.dp3t.networking.errors.ResponseError;
@@ -63,14 +63,17 @@ public class ConfigRepository {
         secureStorage = SecureStorage.getInstance(context);
     }
 
-    public ConfigResponseModel getConfig() throws IOException, ResponseError {
+    public ConfigResponseModel getConfig(Context context) throws IOException, ResponseError {
         String appVersion = APP_VERSION_PREFIX_ANDROID + BuildConfig.VERSION_NAME;
         String osVersion = OS_VERSION_PREFIX_ANDROID + Build.VERSION.SDK_INT;
         String buildNumber = String.valueOf(BuildConfig.BUILD_TIME);
+        String enModuleVersion = String.valueOf(DP3T.getENModuleVersion(context));
 
-        Response<ConfigResponseModel> configResponse = configService.getConfig(appVersion, osVersion, buildNumber).execute();
+        Response<ConfigResponseModel> configResponse = configService.getConfig(appVersion, osVersion, buildNumber, enModuleVersion).execute();
         if (configResponse.isSuccessful()) {
             secureStorage.setLastConfigLoadSuccess(System.currentTimeMillis());
+            secureStorage.setLastConfigLoadSuccessAppVersion(BuildConfig.VERSION_CODE);
+            secureStorage.setLastConfigLoadSuccessSdkInt(Build.VERSION.SDK_INT);
             return configResponse.body();
         } else {
             throw new ResponseError(configResponse.raw());

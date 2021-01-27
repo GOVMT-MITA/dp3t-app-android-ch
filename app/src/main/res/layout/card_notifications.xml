@@ -9,64 +9,65 @@
   -->
 
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-	style="@style/NextStep.Card"
-	android:layout_width="match_parent"
-	android:layout_height="wrap_content">
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/NextStep.Card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-	<LinearLayout
-		android:id="@+id/card_notifications"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:foreground="?selectableItemBackground"
-		android:orientation="vertical">
+    <LinearLayout
+        android:id="@+id/card_notifications"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="?selectableItemBackground"
+        android:orientation="vertical">
 
-		<LinearLayout
-			android:id="@+id/notifications_header"
-			android:layout_width="match_parent"
-			android:layout_height="match_parent"
-			android:gravity="center_vertical"
-			android:orientation="horizontal">
+        <LinearLayout
+            android:id="@+id/notifications_header"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-			<TextView
-				style="@style/NextStep.Text.Title.Small"
-				android:layout_width="0dp"
-				android:layout_height="wrap_content"
-				android:layout_weight="1"
-				android:paddingTop="5dp"
-				android:paddingBottom="5dp"
-				android:paddingStart="@dimen/spacing_medium"
-				android:paddingEnd="0dp"
-				android:text="@string/reports_title_homescreen" />
+            <TextView
+                style="@style/NextStep.Text.Title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingStart="@dimen/spacing_medium"
+                android:paddingTop="5dp"
+                android:paddingEnd="0dp"
+                android:paddingBottom="5dp"
+                android:text="@string/reports_title_homescreen" />
 
-			<ImageView
-				android:layout_width="@dimen/chevron_size_title"
-				android:layout_height="@dimen/chevron_size_title"
-				android:paddingStart="0dp"
-				android:paddingEnd="@dimen/spacing_medium"
-				android:src="@drawable/ic_chevron_right"
-				android:tint="@color/dark_main" />
+            <ImageView
+                android:id="@+id/notifications_chevron"
+                android:layout_width="@dimen/chevron_size_title"
+                android:layout_height="@dimen/chevron_size_title"
+                android:paddingStart="0dp"
+                android:paddingEnd="@dimen/spacing_medium"
+                android:src="@drawable/ic_chevron_right"
+                android:tint="@color/dark_main" />
 
-		</LinearLayout>
+        </LinearLayout>
 
-		<LinearLayout
-			android:id="@+id/report_status_bubble"
-			android:layout_width="match_parent"
-			android:layout_height="wrap_content"
-			android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/report_status_bubble"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-			<include
-				android:id="@+id/report_status"
-				layout="@layout/layout_status" />
+            <include
+                android:id="@+id/report_status"
+                layout="@layout/layout_status" />
 
-			<include
-				android:id="@+id/report_errors"
-				layout="@layout/item_error_status"
-				android:visibility="gone"
-				tools:visibility="visible"/>
+            <include
+                android:id="@+id/report_errors"
+                layout="@layout/item_error_status"
+                android:visibility="gone"
+                tools:visibility="visible" />
 
-		</LinearLayout>
+        </LinearLayout>
 
-	</LinearLayout>
+    </LinearLayout>
 
 </androidx.cardview.widget.CardView>

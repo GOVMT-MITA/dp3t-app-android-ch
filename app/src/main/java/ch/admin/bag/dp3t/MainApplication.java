@@ -9,6 +9,7 @@
  */
 package ch.admin.bag.dp3t;
 
+
 import android.app.Activity;
 import android.app.Application;
 import android.app.Notification;
@@ -22,9 +23,6 @@ import android.os.Bundle;
 
 import androidx.core.app.NotificationCompat;
 
-import java.security.PublicKey;
-import java.util.concurrent.atomic.AtomicInteger;
-
 import org.dpppt.android.sdk.DP3T;
 import org.dpppt.android.sdk.InfectionStatus;
 import org.dpppt.android.sdk.TracingStatus;
@@ -34,7 +32,10 @@ import org.dpppt.android.sdk.models.ApplicationInfo;
 import org.dpppt.android.sdk.models.ExposureDay;
 import org.dpppt.android.sdk.util.SignatureUtil;
 
-//import ch.admin.bag.dp3t.debug.DebugFragment;
+import java.security.PublicKey;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import ch.admin.bag.dp3t.debug.DebugFragment;
 import ch.admin.bag.dp3t.networking.CertificatePinning;
 import ch.admin.bag.dp3t.networking.ConfigWorker;
 import ch.admin.bag.dp3t.networking.FakeWorker;
@@ -50,10 +51,10 @@ public class MainApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-//        if (DebugFragment.EXISTS) {
-//            Logger.init(getApplicationContext(), LogLevel.DEBUG);
-//            CertificatePinning.initDebug(this);
-//        }
+        if (DebugFragment.EXISTS) {
+            Logger.init(getApplicationContext(), LogLevel.DEBUG);
+            CertificatePinning.initDebug(this);
+        }
 
         registerReceiver(contactUpdateReceiver, DP3T.getUpdateIntentFilter());
 
@@ -98,12 +99,11 @@ public class MainApplication extends Application {
 
     public static void initDP3T(Context context) {
         PublicKey signaturePublicKey = SignatureUtil.getPublicKeyFromBase64OrThrow(BuildConfig.BUCKET_PUBLIC_KEY);
-        DP3T.init(context, new ApplicationInfo("dp3t-app", BuildConfig.REPORT_URL, BuildConfig.BUCKET_URL), signaturePublicKey,
+        DP3T.init(context, new ApplicationInfo(BuildConfig.REPORT_URL, BuildConfig.BUCKET_URL), signaturePublicKey,
                 BuildConfig.DEV_HISTORY);
 
         DP3T.setCertificatePinner(CertificatePinning.getCertificatePinner());
-        DP3T.setUserAgent(context.getPackageName() + ";" + BuildConfig.VERSION_NAME + ";" + BuildConfig.BUILD_TIME + ";Android;" +
-                Build.VERSION.SDK_INT);
+        DP3T.setUserAgent(() -> context.getPackageName() + ";" + BuildConfig.VERSION_NAME + ";" + BuildConfig.BUILD_TIME + ";Android;" + Build.VERSION.SDK_INT + ";" + DP3T.getENModuleVersion(context));
     }
 
     private BroadcastReceiver contactUpdateReceiver = new BroadcastReceiver() {
@@ -148,6 +148,7 @@ public class MainApplication extends Application {
                         .setPriority(NotificationCompat.PRIORITY_MAX)
                         .setSmallIcon(R.drawable.ic_encounters)
                         .setContentIntent(pendingIntent)
+                        .setOngoing(true)
                         .setAutoCancel(true)
                         .build();
 

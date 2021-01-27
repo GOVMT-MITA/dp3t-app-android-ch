@@ -8,9 +8,9 @@
   ~ SPDX-License-Identifier: MPL-2.0
   -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey_light"
     android:orientation="vertical">
 
     <ScrollView
@@ -21,7 +21,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical"
+            android:paddingStart="@dimen/spacing_large"
+            android:paddingEnd="@dimen/spacing_large">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -34,6 +37,7 @@
 
                 <TextView
                     style="@style/NextStep.Text.SubTitle"
+                    android:textColor="@color/blue_main"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/spacing_large"

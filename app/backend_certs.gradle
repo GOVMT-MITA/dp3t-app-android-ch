@@ -9,22 +9,26 @@
  */
 
 ext {
-	backend_certs = [
-			dev    : [
-					CONFIG_CERTIFICATE: "dummy-key",
-					BUCKET_PUBLIC_KEY : "dummy-key"
-			],
-			test   : [
-					CONFIG_CERTIFICATE: "dummy-key",
-					BUCKET_PUBLIC_KEY : "dummy-key"
-			],
-			abnahme: [
-					CONFIG_CERTIFICATE: "dummy-key",
-					BUCKET_PUBLIC_KEY : "dummy-key"
-			],
-			prod   : [
-					CONFIG_CERTIFICATE: "dummy-key",
-					BUCKET_PUBLIC_KEY : "dummy-key"
-			]
-	]
+    backend_certs = [
+            dev    : [
+                    CONFIG_CERTIFICATE: "dummy-key",
+                    BUCKET_PUBLIC_KEY : "dummy-key"
+            ],
+            test   : [
+                    CONFIG_CERTIFICATE: "dummy-key",
+                    BUCKET_PUBLIC_KEY : "dummy-key"
+            ],
+            abnahme: [
+                    CONFIG_CERTIFICATE: "dummy-key",
+                    BUCKET_PUBLIC_KEY : "dummy-key"
+            ],
+            prod   : [
+                    CONFIG_CERTIFICATE: "dummy-key",
+                    BUCKET_PUBLIC_KEY : "dummy-key"
+            ],
+            log    : [
+                    CONFIG_CERTIFICATE: "dummy-key",
+                    BUCKET_PUBLIC_KEY : "dummy-key"
+            ]
+    ]
 }

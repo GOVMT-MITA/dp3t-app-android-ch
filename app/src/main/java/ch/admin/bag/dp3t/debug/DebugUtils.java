@@ -37,7 +37,7 @@ class DebugUtils {
 	protected static SpannableString formatStatusString(TracingStatus status, Context context) {
 		SpannableStringBuilder builder = new SpannableStringBuilder();
 		boolean isTracing = status.isTracingEnabled();
-		builder.append(context.getString(isTracing ? R.string.tracing_active_title : R.string.android_tracing_error_title)).append("\n")
+		builder.append(context.getString(isTracing ? R.string.tracing_active_title : R.string.android_gaen_error_title)).append("\n")
 				.setSpan(new StyleSpan(Typeface.BOLD), 0, builder.length() - 1, Spanned.SPAN_INCLUSIVE_EXCLUSIVE);
 
 		long lastSyncDateUTC = status.getLastSyncDate();

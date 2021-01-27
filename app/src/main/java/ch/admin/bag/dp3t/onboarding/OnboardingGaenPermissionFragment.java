@@ -47,7 +47,7 @@ public class OnboardingGaenPermissionFragment extends Fragment {
     }
 
     public OnboardingGaenPermissionFragment() {
-        super(R.layout.fragment_onboarding_permission_tracing);
+        super(R.layout.fragment_onboarding_permission_gaen);
     }
 
     @Override
@@ -60,12 +60,12 @@ public class OnboardingGaenPermissionFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        activateButton = view.findViewById(R.id.onboarding_tracing_button);
+        activateButton = view.findViewById(R.id.onboarding_gaen_button);
         activateButton.setOnClickListener(v -> {
-            checkTracing();
+            checkGaen();
             wasUserActive = true;
         });
-        continueButton = view.findViewById(R.id.onboarding_tracing_continue_button);
+        continueButton = view.findViewById(R.id.onboarding_gaen_continue_button);
         continueButton.setOnClickListener(v -> {
             ((OnboardingActivity) requireActivity()).continueToNextPage();
         });
@@ -75,7 +75,7 @@ public class OnboardingGaenPermissionFragment extends Fragment {
     public void onResume() {
         super.onResume();
         if (wasUserActive && !startedService) {
-            checkTracing();
+            checkGaen();
         }
     }
 
@@ -85,11 +85,11 @@ public class OnboardingGaenPermissionFragment extends Fragment {
         outState.putBoolean(STATE_USER_ACTIVE, wasUserActive);
     }
 
-    private void checkTracing() {
+    private void checkGaen() {
         DP3T.checkGaenAvailability(requireContext(), availability -> {
             switch (availability) {
                 case AVAILABLE:
-                    activateTracing();
+                    activateGaen();
                     break;
                 case UPDATE_REQUIRED:
                 case UNAVAILABLE:
@@ -119,7 +119,7 @@ public class OnboardingGaenPermissionFragment extends Fragment {
                 .show();
     }
 
-    private void activateTracing() {
+    private void activateGaen() {
         OnboardingActivity activity = (OnboardingActivity) getActivity();
         if (activity == null) {
             return;
@@ -150,9 +150,9 @@ public class OnboardingGaenPermissionFragment extends Fragment {
 
     private void updateFragmentState(boolean activated) {
         if (activated) {
-            PermissionButtonUtil.setButtonOk(activateButton, R.string.onboarding_tracing_button_activated);
+            PermissionButtonUtil.setButtonOk(activateButton, R.string.onboarding_gaen_button_activated);
         } else {
-            PermissionButtonUtil.setButtonDefault(activateButton, R.string.onboarding_tracing_button_activate);
+            PermissionButtonUtil.setButtonDefault(activateButton, R.string.onboarding_gaen_button_activate);
         }
         continueButton.setVisibility(activated || wasUserActive ? View.VISIBLE : View.GONE);
     }

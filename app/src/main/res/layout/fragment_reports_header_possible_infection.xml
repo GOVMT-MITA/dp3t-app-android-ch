@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2020 Ubique Innovation AG <https://www.ubique.ch>
+  ~
+  ~ This Source Code Form is subject to the terms of the Mozilla Public
+  ~ License, v. 2.0. If a copy of the MPL was not distributed with this
+  ~ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+  ~
+  ~ SPDX-License-Identifier: MPL-2.0
+  -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blue_main">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/fragment_reports_header_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_info_border" />
+
+        <LinearLayout
+            android:id="@+id/fragment_reports_header_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="@dimen/spacing_medium"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <TextView
+                style="@style/NextStep.Text.Bold"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/spacing_tiny_small"
+                android:gravity="center"
+                android:paddingStart="@dimen/spacing_medium_large"
+                android:paddingEnd="@dimen/spacing_medium_large"
+                android:text="@string/meldung_detail_exposed_new_meldung"
+                android:textColor="@color/white" />
+
+            <ImageView
+                android:layout_width="115dp"
+                android:layout_height="145dp"
+
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:src="@drawable/img_exposed" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/fragment_reports_header_title"
+            style="@style/NextStep.Text.Title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:text="@string/meldung_detail_exposed_title"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/fragment_reports_header_subtitle"
+            style="@style/NextStep.Text.Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/spacing_small"
+            android:gravity="center"
+            android:text="@string/meldung_detail_exposed_subtitle_last_encounter"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/fragment_reports_header_date"
+            style="@style/NextStep.Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center"
+            android:textColor="@color/white"
+            tools:text="Unknown Time" />
+
+        <ScrollView
+            android:id="@+id/fragment_reports_dates_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:id="@+id/fragment_reports_dates_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </ScrollView>
+
+        <TextView
+            android:id="@+id/fragment_reports_header_show_all_button"
+            style="@style/NextStep.Text.Bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/spacing_tiny_small"
+            android:background="?selectableItemBackground"
+            android:gravity="center"
+            android:padding="@dimen/spacing_small"
+            android:text="@string/meldung_detail_exposed_show_all_button"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:outlineProvider="bounds"
+        android:padding="@dimen/spacing_medium">
+
+        <Button
+            android:id="@+id/fragment_reports_header_continue_button"
+            style="@style/NextStep.Button.WhiteBlue"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/meldung_animation_continue_button"
+            android:visibility="gone"
+            tools:visibility="visible" />
+    </LinearLayout>
+
+</FrameLayout>

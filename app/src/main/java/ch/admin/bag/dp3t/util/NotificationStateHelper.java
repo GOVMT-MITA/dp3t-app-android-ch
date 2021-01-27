@@ -18,7 +18,7 @@ import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 
-import ch.admin.bag.dp3t.main.model.NotificationState;
+import ch.admin.bag.dp3t.home.model.NotificationState;
 import ch.admin.bag.dp3t.R;
 
 public class NotificationStateHelper {
@@ -101,8 +101,8 @@ public class NotificationStateHelper {
             triangle.setVisibility(View.VISIBLE);
             triangle.setImageResource(R.drawable.triangle_status_infected);
             infoContainer.setVisibility(View.VISIBLE);
-            infoText.setText(R.string.report_homescreen_positive_info_line1);
-            infoTel.setText(R.string.report_homescreen_positive_info_line2);
+            infoText.setText(R.string.meldung_homescreen_positive_info_line1);
+            infoTel.setText(R.string.meldung_homescreen_positive_info_line2);
             infoSince.setVisibility(View.GONE);
         }
     }

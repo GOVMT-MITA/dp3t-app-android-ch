@@ -16,22 +16,31 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
-import androidx.work.*;
-
-import java.io.IOException;
-import java.util.concurrent.TimeUnit;
+import androidx.work.Constraints;
+import androidx.work.ExistingPeriodicWorkPolicy;
+import androidx.work.NetworkType;
+import androidx.work.PeriodicWorkRequest;
+import androidx.work.WorkManager;
+import androidx.work.Worker;
+import androidx.work.WorkerParameters;
 
 import org.dpppt.android.sdk.DP3T;
 import org.dpppt.android.sdk.backend.SignatureException;
 import org.dpppt.android.sdk.internal.logger.Logger;
 
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
+import ch.admin.bag.dp3t.BuildConfig;
 import ch.admin.bag.dp3t.R;
 import ch.admin.bag.dp3t.networking.errors.ResponseError;
 import ch.admin.bag.dp3t.networking.models.ConfigResponseModel;
 import ch.admin.bag.dp3t.networking.models.InfoBoxModel;
 import ch.admin.bag.dp3t.storage.SecureStorage;
+import ch.admin.bag.dp3t.util.LanguageUtil;
 import ch.admin.bag.dp3t.util.NotificationUtil;
 
 public class ConfigWorker extends Worker {
@@ -43,8 +52,10 @@ public class ConfigWorker extends Worker {
     private static final String WORK_TAG = "ch.admin.bag.dp3t.ConfigWorker";
 
     public static void scheduleConfigWorkerIfOutdated(Context context) {
-        if (SecureStorage.getInstance(context).getLastConfigLoadSuccess() <
-                System.currentTimeMillis() - MAX_AGE_OF_CONFIG_FOR_RELOAD_AT_APP_START) {
+        SecureStorage secureStorage = SecureStorage.getInstance(context);
+        if (secureStorage.getLastConfigLoadSuccess() < System.currentTimeMillis() - MAX_AGE_OF_CONFIG_FOR_RELOAD_AT_APP_START ||
+                secureStorage.getLastConfigLoadSuccessAppVersion() != BuildConfig.VERSION_CODE ||
+                secureStorage.getLastConfigLoadSuccessSdkInt() != Build.VERSION.SDK_INT) {
             Constraints constraints = new Constraints.Builder()
                     .setRequiredNetworkType(NetworkType.CONNECTED)
                     .build();
@@ -55,7 +66,7 @@ public class ConfigWorker extends Worker {
                             .build();
 
             WorkManager workManager = WorkManager.getInstance(context);
-            workManager.enqueueUniquePeriodicWork(WORK_TAG, ExistingPeriodicWorkPolicy.KEEP, periodicWorkRequest);
+            workManager.enqueueUniquePeriodicWork(WORK_TAG, ExistingPeriodicWorkPolicy.REPLACE, periodicWorkRequest);
         }
     }
 
@@ -81,7 +92,7 @@ public class ConfigWorker extends Worker {
 
     private static void loadConfig(Context context) throws IOException, ResponseError, SignatureException {
         ConfigRepository configRepository = new ConfigRepository(context);
-        ConfigResponseModel config = configRepository.getConfig();
+        ConfigResponseModel config = configRepository.getConfig(context);
 
         DP3T.setMatchingParameters(context,
                 config.getSdkConfig().getLowerThreshold(), config.getSdkConfig().getHigherThreshold(),
@@ -91,7 +102,9 @@ public class ConfigWorker extends Worker {
         SecureStorage secureStorage = SecureStorage.getInstance(context);
         secureStorage.setDoForceUpdate(config.getDoForceUpdate());
 
-        InfoBoxModel info = config.getInfoBox(context.getString(R.string.language_key));
+        secureStorage.setWhatToDoPositiveTestTexts(config.getWhatToDoPositiveTestTexts());
+
+        InfoBoxModel info = config.getInfoBox(LanguageUtil.getAppLocale(context));
         if (info != null) {
             if (info.getInfoId() == null || !info.getInfoId().equals(secureStorage.getInfoboxId())) {
                 //Only update the infobox if it has a new ID.
