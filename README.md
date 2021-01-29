@@ -1,6 +1,6 @@
 # CovidAlertMT: DP3T Android App for Malta
 
-[![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://github.com/GOVMT-MITA/dp3t-app-ios-mt/blob/developmt/LICENSE)
+[![License: MPL 2.0](https://img.shields.io/badge/License-MPL%202.0-brightgreen.svg)](https://github.com/GOVMT-MITA/dp3t-app-android-mt/blob/developmt/LICENSE)
 
 
 ## DP3T
@@ -50,7 +50,7 @@ Bugs or potential problems should be reported using Github issues. Pull requests
 ## Further Documentation
 The full set of documents for DP3T is at https://github.com/DP-3T/documents. Please refer to the technical documents and whitepapers for a description of the implementation.
 
-A description of the usage of the Google Exposure Notifcation API can be found [here](https://github.com/DP-3T/dp3t-sdk-android/blob/master/EXPOSURE_NOTIFICATION_API_USAGE.md).
+A description of the usage of the Google Exposure Notification API can be found [here](https://github.com/DP-3T/dp3t-sdk-android/blob/master/EXPOSURE_NOTIFICATION_API_USAGE.md).
 
 
 ## Installation and Building

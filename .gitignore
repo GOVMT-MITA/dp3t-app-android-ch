@@ -9,6 +9,7 @@
 .cxx
 
 #Custom
+app/prod
 signing/
 keystore.properties
 local.properties
