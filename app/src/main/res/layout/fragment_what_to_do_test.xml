@@ -205,6 +205,72 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/wtd_inform_interop"
+                        style="@style/NextStep.Text.Bold.Purple"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_medium"
+                        android:text="@string/interop_mode_title" />
+
+                    <TextView
+                        android:id="@+id/wtd_inform_interop_title"
+                        style="@style/NextStep.Text.Bold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_medium"
+                        android:text="Status" />
+
+                    <LinearLayout
+                        android:id="@+id/wtd_inform_interop_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_small"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/wtd_inform_interop_icon"
+                            android:layout_width="@dimen/icon_size"
+                            android:layout_height="@dimen/icon_size"
+                            android:layout_marginEnd="@dimen/spacing_medium"
+                            android:src="@drawable/ic_warning"
+                            android:tint="@color/purple_main" />
+
+                        <TextView
+                            android:id="@+id/wtd_inform_interop_text"
+                            style="@style/NextStep.Text"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:breakStrategy="high_quality"
+                            android:hyphenationFrequency="full"
+                            android:text="Text" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/wtd_inform_interop_button"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/spacing_small"
+                        android:orientation="horizontal"
+                        android:paddingTop="@dimen/spacing_small"
+                        android:paddingBottom="@dimen/spacing_small">
+
+                        <ImageView
+                            android:layout_width="@dimen/icon_size"
+                            android:layout_height="@dimen/icon_size"
+                            android:layout_marginEnd="@dimen/spacing_small"
+                            android:src="@drawable/ic_person"
+                            android:tint="@color/purple_main" />
+
+                        <TextView
+                            style="@style/NextStep.Text.Bold.Purple"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/interop_mode_preferences" />
+
+                    </LinearLayout>
+
+                    <TextView
                         style="@style/NextStep.Text.Bold"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

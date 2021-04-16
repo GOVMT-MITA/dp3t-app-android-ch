@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) 2020 Ubique Innovation AG <https://www.ubique.ch>
   ~
-  ~ This Source Code Form is subject to the terms of the Mozilla Public
+  ~ This Source Data Form is subject to the terms of the Mozilla Public
   ~ License, v. 2.0. If a copy of the MPL was not distributed with this
   ~ file, You can obtain one at https://mozilla.org/MPL/2.0/.
   ~
@@ -389,4 +389,46 @@
     <string name="enexceptionhelper_bluetooth_multiple_ad_not_supported">Bluetooth Multiple Advertisement is not supported on this device.</string>
     <string name="enexceptionhelper_package_signature_invalid">Unauthorized package signature. Verify that you installed the app from the Google Play Store.</string>
     <string name="enexceptionhelper_api_unauthorized">Unauthorized API usage. Please restart the app to try again.</string>
+
+    <string name="interop_mode_title">Cross-border Data Exchange</string>
+    <string name="interop_mode_title_bold"><b>Cross-border Data Exchange</b></string>
+    <string name="interop_mode_preferences">Change your Cross-border Data Exchange preference</string>
+    <string name="interop_mode_summary">COVID Alert Malta can exchange exposure notifications with other COVID-19 contact tracing apps within the European Union and European Economic Area (EEA).</string>
+    <string name="interop_mode_description">COVID Alert Malta can exchange exposure notifications with contact tracing apps of other EU and European Economic Area (EEA) countries of your choice. Enabling this feature means that you could be warned of potential exposure to COVID-19 should you have come in contact with an infected user of another European contact tracing app whilst in Malta or abroad.</string>
+    <string name="interop_mode_update_description">COVID Alert Malta can now exchange data with other contact tracing and warning apps within the European Union.\n\nThis change is covered in our updated Data Privacy Policy.</string>
+    <string name="interop_mode_unavailable_title">No Cross-border Data Exchange</string>
+    <string name="interop_mode_unavailable_text">Cross-border data exchange is currently unavailable</string>
+    <string name="interop_mode_unavailable_bold"><b>Cross-border data exchange is currently unavailable</b></string>
+    <string name="interop_mode_instructions">Select your preferred cross-border data exchange option.</string>
+    <string name="interop_mode_instructions_bold"><b>Select your preferred cross-border data exchange option.</b></string>
+    <string name="interop_mode_disabled_title">No Cross-border Data Exchange</string>
+    <string name="interop_mode_disabled_text">Do not exchange exposure notifications with other contact tracing apps of countries within the European Union and European Economic Area (EEA).</string>
+    <string name="interop_mode_disabled_text_alt">No exposure notifications are being exchanged with users of other European Union and EEA contact tracing apps.</string>
+    <string name="interop_mode_legacy_title">Select your preferred option</string>
+    <string name="interop_mode_legacy_text">No preferred option has been chosen for the exchange of exposure notifications with users of other European Union and EEA contact tracing apps.</string>
+    <string name="interop_mode_legacy_text_alt">You have not yet chosen your preferred option for the exchange of exposure notifications with users of other European Union and EEA contact tracing apps.</string>
+    <string name="interop_mode_countries_title">Selected Countries Only</string>
+    <string name="interop_mode_countries_text">Exchange exposure notifications with contact tracing apps of your selected EU and European Economic Area (EEA) countries only.</string>
+    <string name="interop_mode_countries_text_alt">Exposure notifications will be shared with users of contact tracing apps of EU and European Economic Area (EEA) countries that you have selected.</string>
+    <string name="interop_mode_countries_text_selection">Select Countries</string>
+    <string name="interop_mode_countries_update_pending_text">There has been an update to the countries available for the exchange of exposure notifications.</string>
+    <string name="interop_mode_eu_title">EU and European Economic Area (EEA)</string>
+    <string name="interop_mode_eu_text">Exchange exposure notifications with users of all compatible contact tracing apps of countries in the European Union and European Economic Area (EEA).</string>
+    <string name="interop_mode_eu_text_alt">Exposure notifications will be shared with users of all other compatible European Union and EEA contact tracing apps.</string>
+    <string name="bottom_nav_tab_preferences">Preferences</string>
+    <string name="preferences_general"><b>General Preferences</b></string>
+    <string name="preferences_general_ios">General Preferences</string>
+    <string name="preferences_language_title">Language</string>
+    <string name="preferences_language_modal_title">Select your preferred language</string>
+    <string name="preferences_language_en">English</string>
+    <string name="preferences_language_mt">Maltese</string>
+    <string name="preferences_wifi_sync_title">WiFi Sync Option</string>
+    <string name="preferences_wifi_sync_summary">Synchronise only when connected to WiFi</string>
+    <string name="onboarding_select_button">Enable</string>
+    <string name="onboarding_skip_button">Skip</string>
+    <string name="onboarding_interop_info_title_1">More information</string>
+    <string name="onboarding_interop_info_text_1">COVID Alert Malta can exchange exposure notifications with contract tracing apps of other EU and European Economic Area (EEA) countries of your choice. Enabling this feature means that you could be warned of potential exposure to COVID-19 should you have come in contact with an infected user of another European contact tracing app whilst in Malta or abroad.</string>
+    <string name="button_view">View</string>
+    <string name="choose_button">Choose</string>
+    <string name="interop_mode_available_text">Cross-border data exchange is now available again. No further action required from your end.</string>
 </resources>

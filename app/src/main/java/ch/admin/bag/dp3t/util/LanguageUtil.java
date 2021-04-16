@@ -10,25 +10,35 @@ import android.util.DisplayMetrics;
 import java.util.Locale;
 
 public class LanguageUtil {
-    public static final String SHARED_PREFS_LANGUAGE = "DP3T_LANGUAGE";
+    public static final String SHARED_PREFS_LANGUAGE_LEGACY = "DP3T_LANGUAGE";
+    public static final String SHARED_PREFS_LANGUAGE = "preferences_language";
     public static final String LANGUAGE_EN = "en";
     public static final String LANGUAGE_MT = "mt";
 
     //Get current custom locale. Set to default if missing.
     public static String getAppLocale(Context context) {
-        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+        String defaultLocale = LANGUAGE_EN;
 
-        //Save and return default locale
+        SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
+
+        //If no setting is present initialise a default
         if (!sharedPrefs.contains(LanguageUtil.SHARED_PREFS_LANGUAGE)) {
-            SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(context).edit();
-            editor.putString(SHARED_PREFS_LANGUAGE, LANGUAGE_EN);
+
+            //Migrate legacy variable if it is present
+            if (sharedPrefs.contains(LanguageUtil.SHARED_PREFS_LANGUAGE_LEGACY)) {
+                defaultLocale = sharedPrefs.getString(LanguageUtil.SHARED_PREFS_LANGUAGE_LEGACY, defaultLocale);
+                editor.remove(LanguageUtil.SHARED_PREFS_LANGUAGE_LEGACY);
+            }
+
+            editor.putString(SHARED_PREFS_LANGUAGE, defaultLocale);
             editor.apply();
 
-            return LANGUAGE_EN;
+            return defaultLocale;
         }
 
         //Return custom locale
-        return sharedPrefs.getString(SHARED_PREFS_LANGUAGE, LANGUAGE_EN);
+        return sharedPrefs.getString(SHARED_PREFS_LANGUAGE, defaultLocale);
     }
 
     //Set new custom locale.

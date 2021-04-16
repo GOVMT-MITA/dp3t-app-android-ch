@@ -74,7 +74,7 @@ public enum NotificationState {
 			case NO_REPORTS:
 				return R.color.dark_main;
 			case EXPOSED:
-				return R.color.dark_main;
+				return R.color.white;
 			case POSITIVE_TESTED:
 				return R.color.white;
 		}

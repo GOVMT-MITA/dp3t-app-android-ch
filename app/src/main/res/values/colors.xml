@@ -9,9 +9,9 @@
   -->
 
 <resources>
-    <color name="colorPrimary">@color/red_main</color>
+    <color name="colorPrimary">@color/blue_main</color>
     <color name="colorPrimaryDark">@color/dark_main</color>
-    <color name="colorAccent">@color/red_main</color>
+    <color name="colorAccent">@color/blue_main</color>
 
     <color name="dark_main">#4A4969</color>
     <color name="purple_main">#8D6A9F</color>

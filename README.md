@@ -40,8 +40,8 @@ Bugs or potential problems should be reported using Github issues. Pull requests
 
 
 ## Repositories
-* Android SDK & Calibration app: [dp3t-sdk-android](https://github.com/DP-3T/dp3t-sdk-android)
-* iOS SDK & Calibration app: [dp3t-sdk-ios](https://github.com/DP-3T/dp3t-sdk-ios)
+* Android SDK: [dp3t-sdk-android](https://github.com/GOVMT-MITA/dp3t-sdk-android)
+* iOS SDK: [dp3t-sdk-ios](https://github.com/GOVMT-MITA/dp3t-sdk-ios)
 * Android App: [dp3t-app-android](https://github.com/GOVMT-MITA/dp3t-app-android-mt)
 * iOS App: [dp3t-app-ios](https://github.com/GOVMT-MITA/dp3t-app-ios-mt)
 * Backend SDK: [dp3t-sdk-backend](https://github.com/GOVMT-MITA/dp3t-sdk-backend)
