@@ -20,6 +20,7 @@ import android.os.Build;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
+import androidx.preference.MultiSelectListPreference;
 import androidx.preference.PreferenceManager;
 import androidx.work.Constraints;
 import androidx.work.ExistingPeriodicWorkPolicy;
@@ -37,6 +38,7 @@ import org.dpppt.android.sdk.internal.logger.Logger;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import ch.admin.bag.dp3t.BuildConfig;
@@ -170,9 +172,26 @@ public class ConfigWorker extends Worker {
                 }
             }
 
-            //Update countries, prompt warning if user is using the countries mode
             EUSharingCountryModel[] existingCountries = secureStorage.getConfigInteroperabilityCountries();
-            if(!Arrays.equals(existingCountries, config.getEUSharingCountries())) {
+            EUSharingCountryModel[] configCountries = config.getEUSharingCountries();
+            //Update countries, prompt warning if user is using the countries mode
+            if(!Arrays.equals(existingCountries, configCountries)) {
+                HashSet<String> removedCountries = new HashSet<>();
+                for (EUSharingCountryModel existingCountry : existingCountries)
+                {
+                    boolean found = false;
+                    for (EUSharingCountryModel configCountry : configCountries)
+                    {
+                        if(configCountry.equals(existingCountry)){
+                            found = true;
+                            break;
+                        }
+                    }
+                    if(!found){
+                        removedCountries.add(existingCountry.getCountryCode());
+                    }
+                }
+
                 secureStorage.setConfigInteroperabilityCountries(config.getEUSharingCountries());
                 if(secureStorage.getConfigInteroperabilityMode() == InteroperabilityMode.COUNTRIES){
                     secureStorage.setConfigInteroperabilityMode(InteroperabilityMode.COUNTRIES_UPDATE_PENDING);
@@ -184,17 +203,23 @@ public class ConfigWorker extends Worker {
                 }
 
                 SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
+                Set<String> selectedCountries = sharedPreferences.getStringSet("preferences_covid_interop_countries_selection", new HashSet<>());
+                selectedCountries.removeAll(removedCountries);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.remove("preferences_covid_interop_countries_selection").apply();
-                DP3T.clearSelectedCountries(context, new ResponseCallback<Boolean>() {
+                editor.putStringSet("preferences_covid_interop_countries_selection", selectedCountries).apply();
+
+                HashSet updatedSelectedCountries = new HashSet();
+                updatedSelectedCountries.addAll(selectedCountries);
+
+                DP3T.updateSelectedCountries(context, updatedSelectedCountries, new ResponseCallback<Boolean>() {
                     @Override
                     public void onSuccess(Boolean response) {
-                        Logger.i("DP3T Interface", "cleared selected countries: " + response);
+                        Logger.i("DP3T Interface", "changed selected countries: " + response);
                     }
 
                     @Override
                     public void onError(Throwable throwable) {
-                        Logger.e("DP3T Interface", "clearSelectedCountries", throwable);
+                        Logger.e("DP3T Interface", "updateSelectedCountries", throwable);
                         throwable.printStackTrace();
                     }
                 });

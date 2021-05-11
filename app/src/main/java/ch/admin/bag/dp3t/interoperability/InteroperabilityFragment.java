@@ -65,8 +65,6 @@ public class InteroperabilityFragment extends PreferenceFragmentCompat {
         //Update country mode if changes are detected
         if(secureStorage.getConfigInteroperabilityMode() == InteroperabilityMode.COUNTRIES_UPDATE_PENDING) {
             secureStorage.setConfigInteroperabilityMode(InteroperabilityMode.COUNTRIES);
-            //Empty user choice
-            preferenceCountriesSelection.setValues(new HashSet<>());
         }
 
         //Show country selection option if current mode is for countries

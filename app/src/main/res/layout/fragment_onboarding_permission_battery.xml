@@ -7,20 +7,22 @@
   ~
   ~ SPDX-License-Identifier: MPL-2.0
   -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_vertical"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
             android:orientation="vertical"
-            android:paddingStart="@dimen/spacing_large"
-            android:paddingEnd="@dimen/spacing_large">
+            android:padding="@dimen/spacing_larger">
 
             <ImageView
                 android:id="@+id/onboarding_illustration"
@@ -41,9 +43,9 @@
             <TextView
                 android:id="@+id/onboarding_description"
                 style="@style/NextStep.Text"
-                android:layout_marginTop="@dimen/spacing_small"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_small"
                 android:breakStrategy="high_quality"
                 android:gravity="center_horizontal"
                 android:hyphenationFrequency="full"
@@ -56,9 +58,7 @@
                 style="@style/NextStep.Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing_large"
                 android:layout_marginTop="@dimen/spacing_medium"
-                android:layout_marginEnd="@dimen/spacing_large"
                 android:text="@string/android_onboarding_battery_permission_button" />
 
             <Button
@@ -66,9 +66,7 @@
                 style="@style/NextStep.Button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/spacing_large"
                 android:layout_marginTop="@dimen/spacing_large"
-                android:layout_marginEnd="@dimen/spacing_large"
                 android:text="@string/onboarding_continue_button"
                 android:visibility="gone" />
 
@@ -77,9 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_medium"
                 android:gravity="center_horizontal"
-                android:orientation="vertical"
-                android:paddingStart="@dimen/spacing_large"
-                android:paddingEnd="@dimen/spacing_large">
+                android:orientation="vertical">
 
                 <TextView
                     style="@style/NextStep.Text.Bold"
@@ -101,12 +97,11 @@
                         android:tint="@color/blue_main" />
 
                     <TextView
-                        style="@style/NextStep.Text"
+                        style="@style/NextStep.Text.Small"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:breakStrategy="high_quality"
                         android:hyphenationFrequency="full"
-                        android:textSize="12dp"
                         android:text="@string/android_onboarding_battery_permission_info_1_text" />
 
                 </LinearLayout>
@@ -132,17 +127,15 @@
                         android:tint="@color/blue_main" />
 
                     <TextView
-                        style="@style/NextStep.Text"
+                        style="@style/NextStep.Text.Small"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:breakStrategy="high_quality"
                         android:hyphenationFrequency="full"
-                        android:textSize="12dp"
                         android:text="@string/android_onboarding_battery_permission_info_2_text" />
 
                 </LinearLayout>
-
             </LinearLayout>
-
         </LinearLayout>
-</LinearLayout>
+    </ScrollView>
+</RelativeLayout>

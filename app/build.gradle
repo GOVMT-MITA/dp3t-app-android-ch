@@ -43,8 +43,8 @@ android {
         applicationId "mt.gov.dp3t"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 43
-        versionName "1.4.3"
+        versionCode 44
+        versionName "2.0.1"
         resConfigs "en", "mt"
 
         buildConfigField "long", "BUILD_TIME", readPropertyWithDefault('buildTimestamp', System.currentTimeMillis()) + 'L'
