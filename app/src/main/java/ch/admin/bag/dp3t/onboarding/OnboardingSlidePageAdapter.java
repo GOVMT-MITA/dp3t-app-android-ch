@@ -85,8 +85,10 @@ public class OnboardingSlidePageAdapter extends FragmentStateAdapter {
             case 6:
                 return OnboardingBatteryPermissionFragment.newInstance();
             case 7:
-                return OnboardingGaenPermissionFragment.newInstance();
+                return OnboardingInteroperabilityFragment.newInstance();
             case 8:
+                return OnboardingGaenPermissionFragment.newInstance();
+            case 9:
                 return OnboardingFinishedFragment.newInstance();
         }
         throw new IllegalArgumentException("There is no fragment for view pager position " + position);
@@ -94,7 +96,7 @@ public class OnboardingSlidePageAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 9;
+        return 10;
     }
 
 }

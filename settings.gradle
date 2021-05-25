@@ -7,6 +7,7 @@
  *
  * SPDX-License-Identifier: MPL-2.0
  */
+include ':dp3t-sdk-android'
 
-rootProject.name='dp3t-android-app'
+rootProject.name = 'dp3t-android-app'
 include ':app'

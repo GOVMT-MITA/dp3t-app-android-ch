@@ -69,6 +69,12 @@
                     android:layout_marginBottom="@dimen/spacing_medium_large" />
 
                 <include
+                    layout="@layout/card_interoperability"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/spacing_medium_large" />
+
+                <include
                     android:id="@+id/frame_card_symptoms"
                     layout="@layout/card_what_to_do_symptoms"
                     android:layout_width="match_parent"

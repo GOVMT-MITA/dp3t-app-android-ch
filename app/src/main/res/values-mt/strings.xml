@@ -120,7 +120,7 @@
     <string name="onboarding_privacy_text1">Mobiles li jkunu viċin ta’ xulxin jgħaddu d-data ’l xulxin b’mod anonimu.</string>
     <string name="onboarding_privacy_text2">Id-data kollha hi sigrieta (encrypted) u mqabbla lokalment fuq il-mobile; min juża l-mobile ma jistax jiġi identifikat jew ittraċċat permezz ta’ din l-app.</string>
     <string name="onboarding_privacy_text3">Informazzjoni dwar il-privatezza</string>
-    <string name="onboarding_privacy_link3">https://covidalert.gov.mt/privacy-policy</string>
+    <string name="onboarding_privacy_link3">https://covidalert.gov.mt/politika-ta-privatezza-covid-alert-malta/?lang=mt</string>
     <string name="onboarding_begegnungen_heading">X’tagħmel l-app?</string>
     <string name="onboarding_begegnungen_title">Tagħraf il-qrubija permezz tal-Bluetooth</string>
     <string name="onboarding_begegnungen_text1">L-app tinduna awtomatikament meta żewġ mobiles idumu qrib xulxin għal xi żmien.</string>
@@ -128,7 +128,7 @@
     <string name="onboarding_meldung_heading">X’tagħmel l-app?</string>
     <string name="onboarding_meldung_title">Avviż li stajt kont espost għall-virus</string>
     <string name="onboarding_meldung_text1">L-app tavżak jekk il-mobile tiegħek kien viċin tal-mobile ta’ xi ħaddieħor li juża l-app ukoll u li rriżulta pożittiv għall-coronavirus il-ġdid.</string>
-    <string name="onboarding_meldung_text2">Billi tikkuntattja l-Helpline 111 u titlob test, inti tkun tista tipproteġi lilhek u l-ħaddieħor.</string>
+    <string name="onboarding_meldung_text2">Billi tikkuntattja l-Helpline 111 u titlob test, inti tkun tista tipproteġi lilek u l-ħaddieħor.</string>
     <string name="onboarding_bluetooth_heading">X’tagħmel l-app?</string>
     <string name="onboarding_bluetooth_title">Ixgħel il-Bluetooth Location</string>
     <string name="onboarding_bluetooth_text">Biex l-app taħdem u jkollha aċċess għall-Bluetooth, trid tippermetti l-funzjoni tal-Location fuq il-mobile.</string>
@@ -218,7 +218,7 @@
     <string name="inform_detail_faq2_title">Kif nibqa’ anonimu?</string>
     <string name="inform_detail_faq2_text">L-app tibgħat biss kodiċi sigrieti (encrypted).  M’hemm l-ebda data personali. Mobiles oħra bl-istess app jew app simili jiċċekkjaw kienux viċin il-mobile tiegħek fl-aħħar ftit jiem u javżaw lil min jużahom, mingħajr ma int tiġi identifikat.</string>
     <string name="infoline_tel_number">+356 111</string>
-    <string name="faq_button_url">https://covidalert.gov.mt/faqs</string>
+    <string name="faq_button_url">https://covidalert.gov.mt/mistoqsijiet-frekwenti/?lang=mt</string>
     <string name="inform_code_intro_title">Tagħrif importanti</string>
     <string name="inform_code_intro_text">L-app qatt ma tibgħat tagħrif personali.  Tibgħat biss il-ġranet meta l-mobile tiegħek kien qrib mobiles oħra li jużaw l-istess app għal ċertu ħin.  Jista’ jiġri li xi ħadd jiftakar li kien iltaqa’ miegħek dakinhar.</string>
     <string name="inform_code_intro_button">Kompli</string>
@@ -238,11 +238,11 @@
     <string name="accessibility_code_input_hint">Għafas darbtejn biex tbiddel</string>
     <string name="accessibility_faq_button_hint">Din il-buttuna tiftaħ is-sit tad-dipartiment tas-Saħħa.</string>
     <string name="onboarding_gaen_title">Ixgħel l-ittraċċar</string>
-    <string name="onboarding_gaen_text_ios">Notifikazzjonijiet tal-COVID-19 iridu jkunu mixgħewla biex taħdem l-app.</string>
-    <string name="onboarding_gaen_text_android">Notifikazzjonijiet tal-COVID-19 iridu jkunu mixgħewla biex taħdem l-app.</string>
+    <string name="onboarding_gaen_text_ios">Notifikazzjonijiet tal-COVID-19 iridu jkunu mixgħula biex taħdem l-app.</string>
+    <string name="onboarding_gaen_text_android">Notifikazzjonijiet tal-COVID-19 iridu jkunu mixgħula biex taħdem l-app.</string>
     <string name="onboarding_gaen_button_activate">Attiva</string>
     <string name="onboarding_gaen_info_title_1">Tibqa’ anonimu</string>
-    <string name="onboarding_gaen_info_text_1">L-app tiskambja biss kodiċi anonimi, l-eba dettalji personal ma jiġu esposti.</string>
+    <string name="onboarding_gaen_info_text_1">L-app tiskambja biss kodiċi anonimi, l-eba dettalji personali ma jiġu esposti.</string>
     <string name="onboarding_gaen_info_title_2">Jiżdied ftit l-użu tal-batterija</string>
     <string name="onboarding_gaen_info_text_2">L-app topera bl-inqas enerġija possibbli.  Ma tużax wisq il-batterija.</string>
     <string name="onboarding_gaen_button_activated">Tracing Attivat</string>
@@ -307,7 +307,7 @@
     <string name="onboarding_disclaimer_app_version">COVID Alert Malta App Version</string>
     <string name="onboarding_disclaimer_release_version">Data:</string>
     <string name="onboarding_disclaimer_legal_button">Policy dwar il-Privatezza</string>
-    <string name="onboarding_disclaimer_legal_button_url">https://covidalert.gov.mt/privacy-policy</string>
+    <string name="onboarding_disclaimer_legal_button_url">https://covidalert.gov.mt/politika-ta-privatezza-covid-alert-malta/?lang=mt</string>
     <string name="loading_error_no_disk_space">Il-messaġġi ma’ setawx jinqraw minħabba memorja baxxa fuq il-mobile. Għamel iktar spazju vojt biex tkompli.</string>
     <string name="onboarding_accept_button">Aċċetta</string>
     <string name="ratelimit_error_title">Updates mhumiex possibli bħalissa</string>
@@ -361,7 +361,7 @@
     <string name="travel_screen_add_countries_explanation_text" />
     <string name="accessibility_faq_button_hint_non_bag">Din il-buttuna tħalli l-app u tiftaħ websajt.</string>
     <string name="begegnung_detail_no_last_sync_accessibility">L-ebda sinkronizzazzjoni preċedenti</string>
-    <string name="meldungen_background_error_text_android">Ibdel is-settings biex tirċievi notifika barra l-app ukoll fil-każ ta\' rapport.</string>
+    <string name="meldungen_background_error_text_android">Ibdel is-settings biex tirċievi notifika barra l-app ukoll fil-każ ta’ rapport.</string>
     <string name="infoline_coronavirus_number">+356 111</string>
     <string name="gaen_setting_text_ios_13_5" />
     <string name="gaen_setting_text_ios_13_6" />
@@ -389,4 +389,46 @@
     <string name="enexceptionhelper_bluetooth_multiple_ad_not_supported">Bluetooth Multiple Advertisement mhux preżenti fuq dan il-mobile.</string>
     <string name="enexceptionhelper_package_signature_invalid">Din il-verżjoni ta’ l-app mhix awtorizzata. Ivverifika li installajt l-app mill-Google Play Store.</string>
     <string name="enexceptionhelper_api_unauthorized">Użu tal-API mhux awtorizzat. Jekk jogħġbok erġa’ ibda l-app biex terġa’ tipprova.</string>
+
+    <string name="interop_mode_title">Skambju ta’ Data Transkonfinali</string>
+    <string name="interop_mode_title_bold"><b>Skambju ta’ Data Transkonfinali</b></string>
+    <string name="interop_mode_preferences">Ibdel il-preferenza tiegħek ta’ Skambju ta’ Data Transkonfinali</string>
+    <string name="interop_mode_summary">COVID Alert Malta tista’ tiskambja notifiki ta’ espożizzjoni ma’ apps oħra ta’ traċċar ta’ kuntatti fl-Unjoni Ewropea (UE) u fiż-Żona Ekonomika Ewropea (ŻEE).</string>
+    <string name="interop_mode_description">COVID Alert Malta tista’ tiskambja notifiki ta’ espożizzjoni ma’ apps ta’ traċċar ta’ kuntatti ta’ pajjiżi oħra tal-UE u taż-Żona Ekonomika Ewropea (ŻEE) tal-għażla tiegħek. Li tippermetti din il- funzjoni jfisser li tista’ tkun imwissi dwar espożizzjoni potenzjali għall-COVID-19, jekk tkun ġejt f’kuntatt ma’ utent infettat ta’ app oħra Ewropea waqt li tkun f’Malta jew barra.</string>
+    <string name="interop_mode_update_description">COVID Alert Malta issa tista’ jiskambja notifiki ta’ espożizzjoni ma’ apps ta’ traċċar ta’ kuntatti u twissija ta’ pajjiżi oħra tal-UE. \n\n Din il-bidla hija deskritta fil-Politika ta’ Privatezza aġġornata.</string>
+    <string name="interop_mode_unavailable_title">M’Hemmx Skambju ta’ Data Transkonfinali</string>
+    <string name="interop_mode_unavailable_text">L-iSkambju ta’ Data Transkonfinali mhuwiex disponibbli bħalissa.</string>
+    <string name="interop_mode_unavailable_bold"><b>L-iSkambju ta’ Data Transkonfinali mhuwiex disponibbli bħalissa.</b></string>
+    <string name="interop_mode_instructions">Agħżel il-metodu ta’ skambju ta’ data transkonfinali preferut tiegħek.</string>
+    <string name="interop_mode_instructions_bold"><b>Agħżel il-metodu ta’ skambju ta’ data transkonfinali preferut tiegħek.</b></string>
+    <string name="interop_mode_disabled_title">Tagħmilx Skambju ta’ Data Transkonfinali</string>
+    <string name="interop_mode_disabled_text">Tiskambjax notifiki ta’ espożizzjoni ma’ apps oħra ta’ traċċar ta’ kuntatti f’pajjiżi tal-Unjoni Ewropea u taż-Żona Ekonomika Ewropea (ŻEE).</string>
+    <string name="interop_mode_disabled_text_alt">Notifiki ta’ espożizzjoni mhumiex qed jiġu skambjati ma’ utenti ta’ apps oħra ta’ traċċar ta’ kuntatti tal-UE u taż-Żona Ekonomika Ewropea (ŻEE).</string>
+    <string name="interop_mode_legacy_title">Agħmel l-għażla tiegħek</string>
+    <string name="interop_mode_legacy_text">Għada ma’ sarietx l-ebda għażla għall-iskambju ta’ notifiki ta’ esponiment ma’ utenti ta’ apps oħra tat-traċċar ta’ kuntatti tal-UE u taż-Żona Ekonomika Ewropea (ŻEE).</string>
+    <string name="interop_mode_legacy_text_alt">Għadek ma għamiltx l-għażla tiegħek għall-iskambju ta’ notifiki ta’ esponiment ma’ utenti ta’ apps oħra tat-traċċar ta’ kuntatti tal-UE u taż-Żona Ekonomika Ewropea (ŻEE).</string>
+    <string name="interop_mode_countries_title">Pajjiżi Speċifiċi Biss</string>
+    <string name="interop_mode_countries_text">Skambja notifiki ta ’espożizzjoni b’apps ta’ traċċar ta’ kuntatti f’pajjiżi fl-UE u fiż-Żona Ekonomika Ewropea (ŻEE) li għażilt.</string>
+    <string name="interop_mode_countries_text_alt">Notifiki ta’ espożizzjoni se jinqasmu ma’ utenti ta’ applikazzjonijiet ta’traċċar ta’ kuntatti fil-pajjiżi ta’ l-UE u taż-Żona Ekonomika Ewropea (ŻEE) li int għażilt.</string>
+    <string name="interop_mode_countries_text_selection">Agħżel Pajjiżi</string>
+    <string name="interop_mode_countries_update_pending_text">Kien hemm bidla fil-pajjiżi disponibbli għall-iskambju ta’ notifiki ta’ espożizzjoni.</string>
+    <string name="interop_mode_eu_title">UE u ż-Żona Ekonomika Ewropea (ŻEE)</string>
+    <string name="interop_mode_eu_text">Skambja notifiki ta’espożizzjoni ma’ utenti tal-apps kollha ta ’traċċar ta’ kuntatti f’pajjiżi tal-Unjoni Ewropea u taż-Żona Ekonomika Ewropea (ŻEE) u li huma kompatibbli.</string>
+    <string name="interop_mode_eu_text_alt">Notifiki ta’ espożizzjoni se jinqasmu ma’ utenti ta’ l-apps tat-traċċar ta’ kuntatti ta’ l-Unjoni Ewropea u taż-Żona Ekonomika Ewropea (ŻEE) u li huma kompatibbli</string>
+    <string name="bottom_nav_tab_preferences">Preferenzi</string>
+    <string name="preferences_general"><b>Preferenzi Ġenerali</b></string>
+    <string name="preferences_general_ios">Preferenzi Ġenerali</string>
+    <string name="preferences_language_title">Lingwa</string>
+    <string name="preferences_language_modal_title">Agħżel il-lingwa preferuta tiegħek</string>
+    <string name="preferences_language_en">Ingliż</string>
+    <string name="preferences_language_mt">Malti</string>
+    <string name="preferences_wifi_sync_title">Sinkronizzar bil-WiFi</string>
+    <string name="preferences_wifi_sync_summary">Issinkronizza biss meta mqabbad mal-WiFi</string>
+    <string name="onboarding_select_button">Attiva</string>
+    <string name="onboarding_skip_button">Aqbeż dan il-pass</string>
+    <string name="onboarding_interop_info_title_1">Iktar informazzjoni</string>
+    <string name="onboarding_interop_info_text_1">Bl-app COVID Alert Malta tista’ tiskambja notifiki ta’ espożizzjoni ma’ apps ta’ traċċar ta’ kuntatti ta’ pajjiżi oħra tal-Unjoni Ewropea (UE) u taż-Żona Ekonomika Ewropea (ŻEE) tal-għażla tiegħek. Li tippermetti din il-funzjoni jfisser li jekk tkun ġejt f’kuntatt ma’ utent infettat ta’ app oħra ta’ traċċar ta’ kuntatt Ewropea waqt li tkun f’Malta jew barra minn Malta tista’ tkun imwissi dwar dan l-espożizzjoni potenzjali għall-COVID-19.</string>
+    <string name="button_view">Ara</string>
+    <string name="choose_button">Agħżel</string>
+    <string name="interop_mode_available_text">L-iSkambju Transkonfinali tad-Data issa reġa’ disponibbli. L-ebda azzjoni oħra m’hi meħtieġa minn naħa tiegħek.</string>
 </resources>

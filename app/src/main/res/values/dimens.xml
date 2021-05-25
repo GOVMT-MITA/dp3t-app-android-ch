@@ -33,10 +33,14 @@
     <dimen name="text_size_small">14sp</dimen>
     <dimen name="text_size_bottom_nav">11sp</dimen>
     <dimen name="text_size_button">16sp</dimen>
+    <dimen name="text_size_button_large">18sp</dimen>
+    <dimen name="text_size_button_small">14sp</dimen>
     <dimen name="text_size_input">24sp</dimen>
 
     <dimen name="chevron_size_title">24dp</dimen>
     <dimen name="illustration_height">180dp</dimen>
+    <dimen name="illustration_height_medium">125dp</dimen>
+    <dimen name="illustration_height_small">100dp</dimen>
     <dimen name="info_button_size">48dp</dimen>
     <dimen name="home_appbar_height">240dp</dimen>
     <dimen name="button_elevation">0dp</dimen>

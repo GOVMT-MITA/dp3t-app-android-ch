@@ -15,6 +15,9 @@ public class ConfigResponseModel {
     private InfoBoxModelCollection infoBox;
     private WhatToDoPositiveTestTextsCollection whatToDoPositiveTestTexts;
     private SdkConfigModel androidGaenSdkConfig;
+    private int configVersion;
+    private boolean euSharingEnabled;
+    private EUSharingCountryModel[] euSharingCountries;
 
     public boolean getDoForceUpdate() {
         return forceUpdate;
@@ -35,5 +38,17 @@ public class ConfigResponseModel {
 
     public WhatToDoPositiveTestTextsCollection getWhatToDoPositiveTestTexts() {
         return whatToDoPositiveTestTexts;
+    }
+
+    public int getConfigVersion() {
+        return configVersion;
+    }
+
+    public boolean getEUSharingEnabled() {
+        return euSharingEnabled;
+    }
+
+    public EUSharingCountryModel[] getEUSharingCountries() {
+        return euSharingCountries;
     }
 }

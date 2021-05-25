@@ -91,7 +91,6 @@ public enum TracingState {
             case ACTIVE:
                 return R.drawable.img_contact_tracing_active;
             case ENDED:
-                return R.drawable.ic_illu_tracing_ended;
             case NOT_ACTIVE:
             default:
                 return -1;

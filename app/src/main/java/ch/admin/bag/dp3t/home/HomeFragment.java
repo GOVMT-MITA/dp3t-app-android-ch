@@ -16,6 +16,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,6 +24,8 @@ import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
@@ -30,6 +33,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -39,10 +43,13 @@ import org.dpppt.android.sdk.internal.logger.Logger;
 import ch.admin.bag.dp3t.BuildConfig;
 import ch.admin.bag.dp3t.R;
 import ch.admin.bag.dp3t.contacts.ContactsFragment;
+import ch.admin.bag.dp3t.home.model.InteroperabilityMode;
 import ch.admin.bag.dp3t.home.model.NotificationState;
 import ch.admin.bag.dp3t.home.model.NotificationStateError;
 import ch.admin.bag.dp3t.home.model.TracingState;
 import ch.admin.bag.dp3t.home.views.HeaderView;
+import ch.admin.bag.dp3t.interoperability.InteroperabilityActivity;
+import ch.admin.bag.dp3t.interoperability.InteroperabilityPromptActivity;
 import ch.admin.bag.dp3t.reports.ReportsFragment;
 import ch.admin.bag.dp3t.storage.SecureStorage;
 import ch.admin.bag.dp3t.util.ENExceptionHelper;
@@ -69,6 +76,7 @@ public class HomeFragment extends Fragment {
     private View informationCard;
     private View tracingCard;
     private View cardNotifications;
+    private View interoperabilityCard;
     private View reportStatusBubble;
     private View reportStatusView;
     private View reportErrorView;
@@ -100,6 +108,17 @@ public class HomeFragment extends Fragment {
                 .beginTransaction()
                 .add(R.id.status_container, TracingBoxFragment.newInstance(true))
                 .commit();
+
+        secureStorage.getConfigInteroperabilityPossibleLiveData().observe(this, configInteroperabilityPossible -> {
+            configInteroperabilityPossible = configInteroperabilityPossible && secureStorage.getConfigInteroperabilityPossible();
+
+            //Show Interoperability prompt if required
+            if (secureStorage.getOnboardingCompleted() && secureStorage.getRequirePromptDisplay() && configInteroperabilityPossible && secureStorage.getConfigInteroperabilityMode() == InteroperabilityMode.LEGACY) {
+                Intent intent = new Intent(this.getContext(), InteroperabilityPromptActivity.class);
+                secureStorage.setRequirePromptDisplay(false);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -108,6 +127,7 @@ public class HomeFragment extends Fragment {
         informationCard = view.findViewById(R.id.card_information);
         tracingCard = view.findViewById(R.id.card_tracing);
         cardNotifications = view.findViewById(R.id.card_notifications);
+        interoperabilityCard = view.findViewById(R.id.card_interoperability);
         reportStatusBubble = view.findViewById(R.id.report_status_bubble);
         reportStatusView = reportStatusBubble.findViewById(R.id.report_status);
         reportErrorView = reportStatusBubble.findViewById(R.id.report_errors);
@@ -124,6 +144,7 @@ public class HomeFragment extends Fragment {
         setupInformationView();
         setupTracingView();
         setupNotification();
+        setupInteroperability();
         setupWhatToDo();
         setupNonProductionHint();
         setupScrollBehavior();
@@ -146,7 +167,6 @@ public class HomeFragment extends Fragment {
     }
 
     private void setupUpdatesBox() {
-
         secureStorage.getInfoBoxLiveData().observe(getViewLifecycleOwner(), hasInfobox -> {
             hasInfobox = hasInfobox && secureStorage.getHasInfobox();
 
@@ -217,11 +237,13 @@ public class HomeFragment extends Fragment {
                 tracingCard.findViewById(R.id.contacs_chevron).setVisibility(View.GONE);
                 tracingCard.setOnClickListener(null);
                 tracingCard.setForeground(null);
+                interoperabilityCard.setVisibility(View.GONE);
             } else {
                 cardSymptomsFrame.setVisibility(VISIBLE);
                 cardTestFrame.setVisibility(VISIBLE);
                 tracingCard.findViewById(R.id.contacs_chevron).setVisibility(VISIBLE);
                 tracingCard.setOnClickListener(v -> showContactsFragment());
+                interoperabilityCard.setVisibility(VISIBLE);
             }
         });
     }
@@ -304,6 +326,54 @@ public class HomeFragment extends Fragment {
                 TracingErrorStateHelper.updateErrorView(reportErrorView, null);
             }
         });
+    }
+
+    private void setupInteroperability() {
+        TypedValue outValue = new TypedValue();
+        requireContext().getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
+        interoperabilityCard.setForeground(requireContext().getDrawable(outValue.resourceId));
+
+        updateInteroperabilityState(secureStorage.getConfigInteroperabilityMode(), secureStorage.getConfigInteroperabilityPossible());
+
+        //Handle changes to interoperability availability
+        secureStorage.getConfigInteroperabilityPossibleLiveData().observe(getViewLifecycleOwner(), interoperabilityPossible -> {
+            updateInteroperabilityState(secureStorage.getConfigInteroperabilityMode(), secureStorage.getConfigInteroperabilityPossible());
+        });
+
+        //Handle changes to interoperability mode
+        secureStorage.getConfigInteroperabilityModeLiveData().observe(getViewLifecycleOwner(), interoperabilityMode -> {
+            updateInteroperabilityState(secureStorage.getConfigInteroperabilityMode(), secureStorage.getConfigInteroperabilityPossible());
+        });
+
+        interoperabilityCard.setOnClickListener(v -> {
+            Intent intent = new Intent(getContext(), InteroperabilityActivity.class);
+            startActivity(intent);
+        });
+    }
+
+    private void updateInteroperabilityState(InteroperabilityMode interoperabilityMode, boolean isInteropPossible) {
+        LinearLayout backgroundView = interoperabilityCard.findViewById(R.id.status_background);
+        ImageView iconView = interoperabilityCard.findViewById(R.id.status_icon);
+        TextView titleView = interoperabilityCard.findViewById(R.id.status_title);
+        TextView textView = interoperabilityCard.findViewById(R.id.status_text);
+
+        if (!isInteropPossible) {
+            backgroundView.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.blue_main));
+            iconView.setImageResource(R.drawable.ic_warning);
+            iconView.setImageTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.white)));
+            titleView.setText(R.string.interop_mode_unavailable_title);
+            titleView.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
+            textView.setText(R.string.interop_mode_unavailable_text);
+            textView.setTextColor(ContextCompat.getColor(getContext(), R.color.white));
+        } else {
+            backgroundView.setBackgroundColor(ContextCompat.getColor(getContext(), InteroperabilityMode.getBackgroundColor(interoperabilityMode)));
+            iconView.setImageResource(InteroperabilityMode.getIcon(interoperabilityMode));
+            iconView.setImageTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), InteroperabilityMode.getTitleTextColor(interoperabilityMode))));
+            titleView.setText(InteroperabilityMode.getTitle(interoperabilityMode));
+            titleView.setTextColor(ContextCompat.getColor(getContext(), InteroperabilityMode.getTitleTextColor(interoperabilityMode)));
+            textView.setText(InteroperabilityMode.getText(interoperabilityMode));
+            textView.setTextColor(ContextCompat.getColor(getContext(), InteroperabilityMode.getTextColor(interoperabilityMode)));
+        }
     }
 
     private void openChannelSettings(String channelId) {

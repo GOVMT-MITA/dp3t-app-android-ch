@@ -24,6 +24,8 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.HashMap;
 
+import ch.admin.bag.dp3t.home.model.InteroperabilityMode;
+import ch.admin.bag.dp3t.networking.models.EUSharingCountryModel;
 import ch.admin.bag.dp3t.networking.models.WhatToDoPositiveTestTextsCollection;
 import ch.admin.bag.dp3t.networking.models.WhatToDoPositiveTestTextsModel;
 
@@ -36,6 +38,7 @@ public class SecureStorage {
     private static final String KEY_INFORM_CODE_REQ = "inform_code_req";
     private static final String KEY_INFORM_TOKEN_REQ = "inform_token_req";
     private static final String KEY_ONBOARDING_COMPLETED = "onboarding_completed";
+    private static final String REQUIRE_PROMPT_DISPLAY = "require_prompt_display";
     private static final String KEY_LAST_SHOWN_CONTACT_ID = "last_shown_contact_id";
     private static final String KEY_HOTLINE_CALL_PENDING = "hotline_call_pending";
     private static final String KEY_HOTLINE_LAST_CALL_TIMESTAMP = "hotline_ever_called_timestamp";
@@ -54,6 +57,10 @@ public class SecureStorage {
     private static final String KEY_LAST_CONFIG_LOAD_SUCCESS_SDK_INT = "last_config_load_success_sdk_int";
     private static final String KEY_T_DUMMY = "KEY_T_DUMMY";
     private static final String KEY_WHAT_TO_DO_POSITIVE_TEST_TEXTS = "whatToDoPositiveTestTexts";
+    private static final String KEY_CONFIG_VERSION = "config_version";
+    private static final String KEY_CONFIG_INTEROPERABILITY_POSSIBLE = "config_interoperability_possible";
+    private static final String KEY_CONFIG_INTEROPERABILITY_COUNTRIES = "config_interoperability_countries";
+    private static final String KEY_CONFIG_INTEROPERABILITY_MODE = "config_interoperability_mode";
 
     private static SecureStorage instance;
 
@@ -63,6 +70,10 @@ public class SecureStorage {
 
     private final MutableLiveData<Boolean> forceUpdateLiveData;
     private final MutableLiveData<Boolean> hasInfoboxLiveData;
+    private final MutableLiveData<Integer> configVersionLiveData;
+    private final MutableLiveData<Boolean> configInteroperabilityPossibleLiveData;
+    private final MutableLiveData<EUSharingCountryModel[]> configInteroperabilityCountriesLiveData;
+    private final MutableLiveData<InteroperabilityMode> configInteroperabilityModeLiveData;
 
     private SecureStorage(@NonNull Context context) {
         try {
@@ -77,6 +88,10 @@ public class SecureStorage {
 
         forceUpdateLiveData = new MutableLiveData<>(getDoForceUpdate());
         hasInfoboxLiveData = new MutableLiveData<>(getHasInfobox());
+        configVersionLiveData = new MutableLiveData<>(getConfigVersion());
+        configInteroperabilityPossibleLiveData = new MutableLiveData<>(getConfigInteroperabilityPossible());
+        configInteroperabilityCountriesLiveData = new MutableLiveData<>(getConfigInteroperabilityCountries());
+        configInteroperabilityModeLiveData = new MutableLiveData<>(getConfigInteroperabilityMode());
     }
 
     public static SecureStorage getInstance(Context context) {
@@ -92,6 +107,22 @@ public class SecureStorage {
 
     public LiveData<Boolean> getInfoBoxLiveData() {
         return hasInfoboxLiveData;
+    }
+
+    public LiveData<Integer> getConfigVersionLiveDataLiveData() {
+        return configVersionLiveData;
+    }
+
+    public LiveData<Boolean> getConfigInteroperabilityPossibleLiveData() {
+        return configInteroperabilityPossibleLiveData;
+    }
+
+    public LiveData<EUSharingCountryModel[]> getConfigInteroperabilityCountriesLiveData() {
+        return configInteroperabilityCountriesLiveData;
+    }
+
+    public LiveData<InteroperabilityMode> getConfigInteroperabilityModeLiveData() {
+        return configInteroperabilityModeLiveData;
     }
 
     public long getInfectedDate() {
@@ -134,6 +165,14 @@ public class SecureStorage {
 
     public void setOnboardingCompleted(boolean completed) {
         prefs.edit().putBoolean(KEY_ONBOARDING_COMPLETED, completed).apply();
+    }
+
+    public boolean getRequirePromptDisplay() {
+        return prefs.getBoolean(REQUIRE_PROMPT_DISPLAY, true);
+    }
+
+    public void setRequirePromptDisplay(boolean required) {
+        prefs.edit().putBoolean(REQUIRE_PROMPT_DISPLAY, required).apply();
     }
 
     public int getLastShownContactId() {
@@ -291,4 +330,44 @@ public class SecureStorage {
         return map.get(language);
     }
 
+    public void setConfigVersion(int configVersion) {
+        prefs.edit().putInt(KEY_CONFIG_VERSION, configVersion).apply();
+        configVersionLiveData.postValue(configVersion);
+    }
+
+    public int getConfigVersion() {
+        return prefs.getInt(KEY_CONFIG_VERSION, 0);
+    }
+
+    public void setConfigInteroperabilityPossible(boolean interoperabilityPossible) {
+        prefs.edit().putBoolean(KEY_CONFIG_INTEROPERABILITY_POSSIBLE, interoperabilityPossible).apply();
+        configInteroperabilityPossibleLiveData.postValue(interoperabilityPossible);
+    }
+
+    public boolean getConfigInteroperabilityPossible() {
+        return prefs.getBoolean(KEY_CONFIG_INTEROPERABILITY_POSSIBLE, false);
+    }
+
+    public void setConfigInteroperabilityCountries(EUSharingCountryModel[] configEUSharingCountries) {
+        prefs.edit().putString(KEY_CONFIG_INTEROPERABILITY_COUNTRIES, gson.toJson(configEUSharingCountries)).apply();
+        configInteroperabilityCountriesLiveData.postValue(configEUSharingCountries);
+    }
+
+    public EUSharingCountryModel[] getConfigInteroperabilityCountries() {
+        EUSharingCountryModel[] configEUSharingCountries = gson.fromJson(prefs.getString(KEY_CONFIG_INTEROPERABILITY_COUNTRIES, "null"), EUSharingCountryModel[].class);
+        if (configEUSharingCountries == null) {
+            configEUSharingCountries = new EUSharingCountryModel[]{};
+        }
+
+        return configEUSharingCountries;
+    }
+
+    public void setConfigInteroperabilityMode(InteroperabilityMode interoperabilityMode) {
+        prefs.edit().putInt(KEY_CONFIG_INTEROPERABILITY_MODE, InteroperabilityMode.toInt(interoperabilityMode)).apply();
+        configInteroperabilityModeLiveData.postValue(interoperabilityMode);
+    }
+
+    public InteroperabilityMode getConfigInteroperabilityMode() {
+        return InteroperabilityMode.getFromInt(prefs.getInt(KEY_CONFIG_INTEROPERABILITY_MODE, -1));
+    }
 }

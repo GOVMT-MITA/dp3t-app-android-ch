@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright (c) 2020 Ubique Innovation AG <https://www.ubique.ch>
+  ~
+  ~ This Source Code Form is subject to the terms of the Mozilla Public
+  ~ License, v. 2.0. If a copy of the MPL was not distributed with this
+  ~ file, You can obtain one at https://mozilla.org/MPL/2.0/.
+  ~
+  ~ SPDX-License-Identifier: MPL-2.0
+  -->
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/marging_status_error"
+    android:layout_marginEnd="@dimen/marging_status_error"
+    android:layout_marginBottom="@dimen/marging_status_error"
+    android:clipChildren="false"
+    android:clipToPadding="false">
+
+    <LinearLayout
+        android:id="@+id/status_background"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/bg_status_bubble"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@id/status_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/status_title" />
+
+    <ImageView
+        android:id="@+id/status_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="10dp"
+        android:tint="@color/dark_main"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/status_title"
+        tools:src="@drawable/ic_check" />
+
+    <TextView
+        android:id="@+id/status_title"
+        style="@style/NextStep.Text.Status"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:paddingTop="10dp"
+        android:paddingStart="0dp"
+        android:paddingEnd="@dimen/spacing_larger"
+        android:textColor="@color/dark_main"
+        app:layout_constraintBottom_toTopOf="@id/status_text"
+        app:layout_constraintEnd_toStartOf="@id/status_illustration"
+        app:layout_constraintStart_toEndOf="@+id/status_icon"
+        tools:text="Status" />
+
+    <TextView
+        android:id="@+id/status_text"
+        style="@style/NextStep.Text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:paddingBottom="15dp"
+        android:textColor="@color/dark_main"
+        app:layout_constraintBottom_toBottomOf="@id/status_illustration"
+        app:layout_constraintEnd_toStartOf="@id/status_illustration"
+        app:layout_constraintStart_toEndOf="@+id/status_icon"
+        tools:text="Subtext" />
+
+    <ImageView
+        android:id="@+id/status_illustration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:src="@drawable/img_cooperation"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/status_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

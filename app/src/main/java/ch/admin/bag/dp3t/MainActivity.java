@@ -21,6 +21,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import org.dpppt.android.sdk.DP3T;
 
+import ch.admin.bag.dp3t.home.model.InteroperabilityMode;
 import ch.admin.bag.dp3t.networking.ConfigWorker;
 import ch.admin.bag.dp3t.onboarding.OnboardingActivity;
 import ch.admin.bag.dp3t.reports.ReportsFragment;
@@ -51,6 +52,11 @@ public class MainActivity extends FragmentActivity {
 
         secureStorage = SecureStorage.getInstance(this);
 
+        //Set default interoperability to legacy
+        if(secureStorage.getConfigInteroperabilityMode() == null){
+            secureStorage.setConfigInteroperabilityMode(InteroperabilityMode.LEGACY);
+        }
+
         secureStorage.getForceUpdateLiveData().observe(this, forceUpdate -> {
             forceUpdate = forceUpdate && secureStorage.getDoForceUpdate();
             if (forceUpdate && forceUpdateDialog == null) {
@@ -78,19 +84,21 @@ public class MainActivity extends FragmentActivity {
         //Initialise default or custom language locale
         LanguageUtil.setAppLocale(this, LanguageUtil.getAppLocale(this));
 
+        //Initialise TracingModel
+        tracingViewModel = new ViewModelProvider(this).get(TracingViewModel.class);
+
         if (savedInstanceState == null) {
             boolean onboardingCompleted = secureStorage.getOnboardingCompleted();
             if (onboardingCompleted) {
                 showHomeFragment();
+                //Carry out initial app sync on startup if this isn't the first launch
+                tracingViewModel.sync();
             } else {
                 startActivityForResult(new Intent(this, OnboardingActivity.class), REQ_ONBOARDING);
             }
         } else {
             consumedExposedIntent = savedInstanceState.getBoolean(STATE_CONSUMED_EXPOSED_INTENT);
         }
-
-        tracingViewModel = new ViewModelProvider(this).get(TracingViewModel.class);
-        tracingViewModel.sync();
 
         checkRedirectionIntents();
     }

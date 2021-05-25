@@ -14,7 +14,6 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.view.menu.MenuView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
@@ -23,7 +22,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import ch.admin.bag.dp3t.home.HomeFragment;
 import ch.admin.bag.dp3t.html.HtmlFragment;
 import ch.admin.bag.dp3t.util.AssetUtil;
-import ch.admin.bag.dp3t.util.LanguageUtil;
 
 public class TabbarHostFragment extends Fragment {
 
@@ -51,19 +49,11 @@ public class TabbarHostFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        String locale = LanguageUtil.getAppLocale(getContext());
-
         Toolbar toolbar = view.findViewById(R.id.main_toolbar);
-
-        MenuView.ItemView languageSelectionToggle = toolbar.findViewById(R.id.homescreen_menu_language_selection);
-
         toolbar.setOnMenuItemClickListener(item -> {
             switch (item.getItemId()) {
                 case R.id.homescreen_menu_language_selection:
-                    String newLocale = locale.equals(LanguageUtil.LANGUAGE_EN) ? LanguageUtil.LANGUAGE_MT : LanguageUtil.LANGUAGE_EN;
-                    LanguageUtil.setAppLocale(getContext(), newLocale);
-                    languageSelectionToggle.setTitle(newLocale.equals(LanguageUtil.LANGUAGE_EN) ? "EN/mt" : "en/MT");
-                    getActivity().recreate();
+                    bottomNavigationView.setSelectedItemId(R.id.bottom_nav_settings);
                     return true;
                 case R.id.homescreen_menu_impressum:
                     HtmlFragment htmlFragment =
@@ -80,13 +70,8 @@ public class TabbarHostFragment extends Fragment {
             }
         });
 
-        languageSelectionToggle.setTitle(locale.equals(LanguageUtil.LANGUAGE_EN) ? "EN/mt" : "en/MT");
-
         bottomNavigationView = view.findViewById(R.id.fragment_main_navigation_view);
-
         setupBottomNavigationView();
-
-        bottomNavigationView.setVisibility(View.GONE);
     }
 
     @Override
@@ -103,8 +88,13 @@ public class TabbarHostFragment extends Fragment {
             lastSelectedTab = item.getItemId();
             lastTabSwitch = System.currentTimeMillis();
 
-            // Use a switch anyway, there may be more tabs in the future
             switch (item.getItemId()) {
+                case R.id.bottom_nav_settings:
+                    getChildFragmentManager().beginTransaction()
+                            .replace(R.id.tabs_fragment_container, SettingsFragment.newInstance())
+                            .commit();
+                    break;
+                //case R.id.bottom_nav_home:
                 default:
                     getChildFragmentManager().beginTransaction()
                             .replace(R.id.tabs_fragment_container, HomeFragment.newInstance())
@@ -114,5 +104,4 @@ public class TabbarHostFragment extends Fragment {
             return true;
         });
     }
-
 }
